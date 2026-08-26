@@ -55,6 +55,13 @@ body{
 .left-bar a:active{
     border:2px inset #999;
 }
+.left-bar .forum-link{
+    color:#cc0000;
+    font-weight:bold;
+    border:1px dotted #cc0000;
+    padding:4px 6px;
+    margin-top:8px;
+}
 .main-content{
     padding:18px;
     vertical-align:top;
@@ -81,13 +88,11 @@ body{
     background:#e9e9e9;
     font-family:SimSun;
     padding:3px 12px;
+    cursor:pointer;
 }
 .ending-hide{
     display:none;
 }
-.bad-end{color:#990000;font-weight:bold;}
-.good-end{color:#007700;font-weight:bold;}
-.true-end{color:#002288;font-weight:bold;}
 .foot{
     font-size:12px;
     color:#555;
@@ -202,46 +207,394 @@ body{
 .err-text{
     color:#bb0000;
 }
-/*卷宗内抉择弹窗 */
+
+/* ===== 抉择弹窗（纯黑背景，居中，覆盖文字） ===== */
 .choice-popup-mask{
     position:fixed;
     top:0;left:0;right:0;bottom:0;
-    background:rgba(0,0,0,0.65);
+    background:#000000;
     display:none;
-    z-index:120;
+    z-index:400;
+    align-items:center;
+    justify-content:center;
 }
 .choice-popup{
     width:420px;
-    margin:130px auto;
+    background:#1a1a1a;
+    border:2px solid #660000;
+    padding:24px 28px 28px 28px;
+    box-shadow:0 0 60px rgba(100,0,0,0.3);
+}
+.choice-popup h3{
+    color:#ff2222;
+    font-family:"SimSun", serif;
+    font-size:22px;
+    margin-top:0;
+    margin-bottom:10px;
+    text-align:center;
+    letter-spacing:4px;
+}
+.choice-popup p{
+    color:#cccccc;
+    font-family:"SimSun", serif;
+    font-size:15px;
+    text-align:center;
+    line-height:1.8;
+    margin-bottom:16px;
+}
+.choice-popup .old-input{
+    width:100%;
+    box-sizing:border-box;
+    background:#0a0a0a;
+    border:2px inset #444;
+    color:#ffffff;
+    padding:6px 10px;
+    font-family:"SimSun", serif;
+    font-size:15px;
+}
+.choice-popup .old-input:focus{
+    border-color:#ff2222;
+    outline:none;
+}
+.choice-popup .btn-row{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:14px;
+}
+.choice-popup .old-btn{
+    background:#222;
+    border:2px outset #555;
+    color:#dddddd;
+    font-family:"SimSun", serif;
+    padding:6px 24px;
+    cursor:pointer;
+}
+.choice-popup .old-btn:hover{
+    background:#333;
+}
+.choice-popup .err-text{
+    color:#ff4444;
+    text-align:center;
+    margin-top:10px;
+    font-size:14px;
+}
+
+/* ===== 卷宗全屏黑屏 ===== */
+#blackScreen {
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:#000000;
+    z-index:300;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    color:#ff0000;
+    font-family:"SimSun", serif;
+    font-size:24px;
+    text-align:center;
+    padding:40px;
+    box-sizing:border-box;
+    overflow-y:auto;
+}
+#blackScreen .red-text {
+    color:#ff0000;
+    font-family:"SimSun", serif;
+    opacity:0;
+    transition:opacity 0.4s;
+    margin:4px 0;
+    line-height:1.6;
+}
+#blackScreen .red-text.show {
+    opacity:1;
+}
+#blackScreen .eye-symbol {
+    font-size:36px;
+    display:inline-block;
+    animation:eyePulse 0.7s infinite alternate;
+}
+@keyframes eyePulse {
+    0% { opacity:0.2; transform:scale(0.8); }
+    100% { opacity:1; transform:scale(1.3); }
+}
+#blackScreen .glitch-text {
+    animation:glitch 0.12s infinite alternate;
+}
+@keyframes glitch {
+    0% { transform:translateX(-2px); opacity:0.9; }
+    100% { transform:translateX(2px); opacity:1; }
+}
+
+/* ===== 终端弹窗 ===== */
+#terminalModal {
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.85);
+    z-index:500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+#terminalModal .terminal-box {
+    width:520px;
+    max-height:70vh;
+    background:#0a0a0a;
+    border:2px solid #33ff33;
+    border-radius:4px;
+    padding:18px 20px 20px 20px;
+    font-family:"Courier New", monospace;
+    color:#33ff33;
+    font-size:14px;
+    overflow-y:auto;
+    box-shadow:0 0 40px rgba(51,255,51,0.1);
+}
+#terminalModal .terminal-box .terminal-output {
+    min-height:100px;
+    max-height:280px;
+    overflow-y:auto;
+    margin-bottom:10px;
+    line-height:1.7;
+    white-space:pre-wrap;
+    word-break:break-all;
+}
+#terminalModal .terminal-box .terminal-input-line {
+    display:flex;
+    align-items:center;
+    border-top:1px solid #1a3a1a;
+    padding-top:10px;
+}
+#terminalModal .terminal-box .terminal-prompt {
+    color:#33ff33;
+    margin-right:8px;
+}
+#terminalModal .terminal-box .terminal-input {
+    background:transparent;
+    border:none;
+    color:#33ff33;
+    font-family:"Courier New", monospace;
+    font-size:14px;
+    flex:1;
+    outline:none;
+}
+#terminalModal .terminal-box .terminal-input::selection {
+    background:#33ff33;
+    color:#000;
+}
+#terminalModal .terminal-box .terminal-close-btn {
+    margin-top:12px;
+    background:#1a1a1a;
+    border:1px solid #33ff33;
+    color:#33ff33;
+    padding:4px 16px;
+    cursor:pointer;
+    font-family:"Courier New", monospace;
+    font-size:12px;
+}
+#terminalModal .terminal-box .terminal-close-btn:hover {
+    background:#33ff33;
+    color:#000;
+}
+
+/* ===== 白光过场 ===== */
+#whiteFlash {
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:#ffffff;
+    z-index:450;
+    display:none;
+    opacity:0;
+    transition:opacity 0.8s ease-out;
+}
+#whiteFlash.active {
+    opacity:1;
+}
+
+/* ===== 结局弹窗（全屏） ===== */
+#endingOverlay {
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    z-index:600;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+    box-sizing:border-box;
+    opacity:0;
+    transition:opacity 1.2s ease-out;
+}
+#endingOverlay.show {
+    opacity:1;
+}
+#endingOverlay.bad-ending {
+    background:#050000;
+}
+#endingOverlay.perfect-ending {
+    background:#0a0a1a;
+}
+#endingOverlay .ending-box {
+    max-width:620px;
+    text-align:center;
+    color:#ffffff;
+    font-family:"SimSun", serif;
+}
+#endingOverlay .ending-box .ending-title {
+    font-size:42px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+#endingOverlay .ending-box .ending-title.bad {
+    color:#cc0000;
+}
+#endingOverlay .ending-box .ending-title.perfect {
+    color:#ffdd44;
+}
+#endingOverlay .ending-box .ending-text {
+    font-size:18px;
+    line-height:2;
+    color:#dddddd;
+    margin-bottom:28px;
+}
+#endingOverlay .ending-box .ending-btn {
+    padding:12px 36px;
+    font-size:16px;
+    background:#333;
+    border:2px solid #666;
+    color:#fff;
+    cursor:pointer;
+    font-family:"SimSun", serif;
+    transition:all 0.3s;
+}
+#endingOverlay .ending-box .ending-btn:hover {
+    background:#555;
+}
+
+/* ===== 论坛跳转密钥弹窗 ===== */
+#forumKeyPopup {
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    z-index:200;
+}
+#forumKeyPopup .popup-box {
+    width:400px;
+    margin:140px auto;
     background:#F4F4FF;
-    border:2px inset #888;
-    padding:22px;
+    border:3px inset #aaa;
+    padding:24px;
+}
+#forumKeyPopup .popup-box h3 {
+    color:#cc0000;
+    margin-top:0;
+}
+#forumKeyPopup .popup-box .err-msg {
+    color:#cc0000;
+    font-size:13px;
+    margin-top:6px;
+    height:20px;
+}
+
+/* ===== 卷宗密钥弹窗 ===== */
+#volumeKeyPopup {
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    z-index:180;
+}
+#volumeKeyPopup .popup-box {
+    width:400px;
+    margin:140px auto;
+    background:#F4F4FF;
+    border:3px inset #aaa;
+    padding:24px;
+}
+#volumeKeyPopup .popup-box h3 {
+    color:#990000;
+    margin-top:0;
+}
+#volumeKeyPopup .popup-box .err-msg {
+    color:#cc0000;
+    font-size:13px;
+    margin-top:6px;
+    height:20px;
 }
 </style>
 </head>
 <body>
 
-<div id="modernEndPage">
-    <div class="end-main-title" id="endMainTitle"></div>
-    <div class="end-sub-title" id="endSubTitle"></div>
-    <div class="end-tip-refresh">⚠ 关闭本网页标签页或者刷新页面，重置全部记录，即可探索其他结局分支</div>
-    <button class="end-btn" onclick="closeModernEnd()">关闭结局弹窗</button>
-    <div class="flash-tip">档案并未真正关闭，还有碎片漂浮在数据库缝隙之中</div>
-</div>
-
-<!--卷宗抉择弹窗 新增 -->
-<div class="choice-popup-mask" id="choiceMask">
-    <div class="choice-popup">
-        <h3>做出你的最终抉择</h3>
-        <p>阅读完整卷宗之后，请输入你选择的道路词语</p>
-        <input class="old-input" id="finalChoiceInput" placeholder="输入抉择词">
-        <br><br>
-        <button class="old-btn" onclick="submitFinalChoice()">确认提交抉择</button>
-        <button class="old-btn" onclick="closeChoicePopup()">返回卷宗页面</button>
-        <p id="choiceErr" class="err-text" style="display:none;">抉择词语不正确，请重读卷宗线索</p>
+<!-- ===== 结局弹窗 ===== -->
+<div id="endingOverlay">
+    <div class="ending-box">
+        <div class="ending-title" id="endingTitle"></div>
+        <div class="ending-text" id="endingText"></div>
+        <button class="ending-btn" onclick="resetAll()">重新开始</button>
     </div>
 </div>
 
+<!-- ===== 白光过场 ===== -->
+<div id="whiteFlash"></div>
+
+<!-- ===== 黑屏卷宗 ===== -->
+<div id="blackScreen">
+    <div id="blackScreenContent"></div>
+</div>
+
+<!-- ===== 终端弹窗 ===== -->
+<div id="terminalModal">
+    <div class="terminal-box">
+        <div class="terminal-output" id="terminalOutput">> 终端已激活。输入 help 查看可用指令。</div>
+        <div class="terminal-input-line">
+            <span class="terminal-prompt">></span>
+            <input class="terminal-input" id="terminalInput" type="text" autofocus placeholder="输入指令...">
+        </div>
+        <button class="terminal-close-btn" onclick="closeTerminal()">关闭终端</button>
+    </div>
+</div>
+
+<!-- ===== 抉择弹窗 ===== -->
+<div class="choice-popup-mask" id="choiceMask">
+    <div class="choice-popup">
+        <h3>⚠ 抉择</h3>
+        <p>你感到一股无形的力量正在吞噬你的意识。</p>
+        <input class="old-input" id="finalChoiceInput" placeholder="输入你的抉择..." style="width:100%;">
+        <div class="btn-row">
+            <button class="old-btn" onclick="submitFinalChoice()">确认</button>
+            <button class="old-btn" onclick="closeChoicePopup()">沉默</button>
+        </div>
+        <div class="err-text" id="choiceErr" style="display:none;"></div>
+    </div>
+</div>
+
+<!-- ===== 卷宗密钥弹窗 ===== -->
+<div id="volumeKeyPopup">
+    <div class="popup-box">
+        <h3>📜 卷宗访问</h3>
+        <p>此卷宗已被加密锁定。请输入访问密钥。</p>
+        <input class="old-input" id="volumeKeyInput" placeholder="输入密钥" style="width:280px;">
+        <br>
+        <button class="old-btn" onclick="checkVolumeKey()">确认</button>
+        <button class="old-btn" onclick="closeVolumeKeyPopup()">取消</button>
+        <div class="err-msg" id="volumeKeyErr"></div>
+    </div>
+</div>
+
+<!-- ===== 论坛跳转密钥弹窗 ===== -->
+<div id="forumKeyPopup">
+    <div class="popup-box">
+        <h3>🔐 访问外部论坛</h3>
+        <p>青树镇本地论坛已被加密保护，请输入访问密钥。</p>
+        <input class="old-input" id="forumKeyInput" placeholder="请输入密钥" style="width:280px;">
+        <br>
+        <button class="old-btn" onclick="checkForumKey()">确认</button>
+        <button class="old-btn" onclick="closeForumKeyPopup()">取消</button>
+        <div class="err-msg" id="forumKeyErr"></div>
+    </div>
+</div>
+
+<!-- ===== 旧卷宗密钥弹窗（保留兼容） ===== -->
 <div class="popup-mask" id="keyPopup">
     <div class="popup-box">
         <h3>访问被限制</h3>
@@ -253,6 +606,17 @@ body{
     </div>
 </div>
 
+<!-- ===== 旧结局弹窗（保留） ===== -->
+<div id="modernEndPage">
+    <div class="end-main-title" id="endMainTitle"></div>
+    <div class="end-sub-title" id="endSubTitle"></div>
+    <div class="end-tip-refresh">⚠ 关闭本网页标签页或者刷新页面，重置全部记录，即可探索其他结局分支</div>
+    <button class="end-btn" onclick="closeModernEnd()">关闭结局弹窗</button>
+    <div class="flash-tip">档案并未真正关闭，还有碎片漂浮在数据库缝隙之中</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ===== 主页面 ===== -->
 <table class="wrap" cellpadding="0" cellspacing="0">
 <tr>
     <td colspan="2" class="top-head">
@@ -282,13 +646,15 @@ body{
         <a href="#" onclick="showPage('contact')">联系我们</a>
         <a href="#" onclick="showPage('forumIntro')">校内讨论板</a>
 
+        <a href="#" onclick="openForumKeyPopup()" class="forum-link">>> 青树镇本地论坛</a>
+
         <p class="blink" style="color:red;font-size:12px;">部分页面记录损坏</p>
         <p style="font-size:12px;color:#666;">最后更新：2004‑06‑01</p>
 
-        <a href="#" onclick="openKeyPopup()">卷宗密钥入口</a>
+        <a href="#" onclick="openVolumeKeyPopup()" style="color:#990000;font-weight:bold;">📜 事件最终卷宗</a>
+
         <div id="endingNavBlock" class="ending-hide">
             <hr>
-            <a href="#" onclick="showPage('ending')">事件最终卷宗</a>
         </div>
     </td>
 
@@ -430,11 +796,12 @@ body{
                 <h3>联系我们｜匿名消息通道</h3>
                 <hr>
                 <p>对话对象：<b>???</b></p>
-                <div id="chatLog" style="height:140px;border:1px solid #999;padding:6px;overflow:auto;background:#fff;color:#000;">
-                    <div>???:不要追问我的身份。有些真相，代价很大。如果你拿到那些散落碎片，可以试着把结果发给我。</div>
+                <div id="chatLog" style="height:160px;border:1px solid #999;padding:6px;overflow:auto;background:#fff;color:#000;font-size:13px;line-height:1.6;">
+                    <div>???: 不要追问我的身份。有些真相，代价很大。</div>
+                    <div>???: 如果你能解开散落在网页各处的碎片，或许能获得我的信任。</div>
                 </div>
                 <br>
-                <input class="old-input" id="chatInput" type="text" placeholder="输入内容发送">
+                <input class="old-input" id="chatInput" type="text" placeholder="输入内容发送" style="width:280px;">
                 <button class="old-btn" onclick="sendChat()">发送</button>
             </div>
         </div>
@@ -545,7 +912,7 @@ body{
             </div>
         </div>
 
-        <div id="page_ending" class="ending-hide">
+        <div id="page_ending" class="ending-hide" style="display:none;">
             <div class="old-box">
                 <h3>事件最终卷宗</h3>
                 <hr>
@@ -555,7 +922,6 @@ body{
                     <p>顾千躲在角落目睹全部经过。王浩宇在楼梯转角窥见部分画面，事后遭受胁迫封口。维修工深夜听见楼内异响，却不敢直接介入。</p>
                     <p>校方销毁账本原件，删除论坛帖子，对外宣告学生私自出走。顾千手握残存物证，陷入三种选择。</p>
                     <p>读完卷宗全部内容之后，你必须做出最终抉择。</p>
-                    <p style="color:#0000EE;text-decoration:underline;cursor:pointer;" onclick="openChoicePopup()">>> 点击此处打开抉择提交窗口</p>
                     <p class="hide-text">刷新页面，全部记忆归零，可以开启另一条时间线。</p>
                 </div>
             </div>
@@ -572,62 +938,92 @@ body{
 </tr>
 </table>
 
+<!-- ============================================================ -->
+<!-- ===== JavaScript ===== -->
 <script>
-let pagesIdList = ["index","schoolinfo","class61","teacher","missing","message","cipher","repairlog","contact","forumIntro","forum","ending"];
-let archiveUnlocked = false;
+// ============================================================
+// 全局变量
+// ============================================================
+var pagesIdList = ["index","schoolinfo","class61","teacher","missing","message","cipher","repairlog","contact","forumIntro","forum"];
+var archiveUnlocked = false;
+var unlockStep = 0;
+var chatLog = document.getElementById("chatLog");
+var endingNavBlock = document.getElementById("endingNavBlock");
+var blackScreenRunning = false;
 
-//抉择弹窗函数 新增
-function openChoicePopup(){
-    document.getElementById("choiceMask").style.display="block";
-    document.getElementById("finalChoiceInput").value="";
-    document.getElementById("choiceErr").style.display="none";
+// ============================================================
+// 碎片收集状态（localStorage 跨页面共享）
+// ============================================================
+function getFragments() {
+    try {
+        var data = localStorage.getItem("fragments_collected");
+        if (data) return JSON.parse(data);
+    } catch(e) {}
+    return [];
 }
-function closeChoicePopup(){
-    document.getElementById("choiceMask").style.display="none";
+function getFragmentProgress() {
+    var frags = getFragments();
+    var target = ['i','n','v','i','s','i','b','l','e','t'];
+    var collected = 0;
+    for (var i = 0; i < target.length; i++) {
+        if (frags.indexOf(target[i]) !== -1) collected++;
+    }
+    return collected + "/" + target.length;
 }
-function submitFinalChoice(){
-    let val = document.getElementById("finalChoiceInput").value.trim();
-    document.getElementById("choiceErr").style.display="none";
-    if(val === "妥协"){
-        closeChoicePopup();
-        openModernEnd("■ 坏结局 · 无声掩埋","你选择妥协。顾千销毁了手里仅存的物证。学校对外维持离家出走的说法。真相被掩埋在旧校舍尘土之下，永远不会被外人知晓。王浩宇终生被秘密裹挟，活在恐惧之中。");
-    }else if(val === "留存证据"){
-        closeChoicePopup();
-        openModernEnd("■ 好结局 · 静待来日","证据被秘密保存，没有公之于众。当下的黑暗无法立刻推翻，但真相没有彻底消亡。多年以后，会有人重新翻开这件往事，告慰逝去的人。");
-    }else if(val === "揭露真相"){
-        closeChoicePopup();
-        openModernEnd("■ 真结局 · 昭雪","顾千选择出面作证，旧实验楼留存的物证被完整提交。庄军的所作所为全部曝光，校园掩盖的黑幕彻底揭开。范明磊的冤屈得以昭雪。所有被胁迫的学生终于不必再保守秘密。");
+
+// ============================================================
+// 论坛跳转
+// ============================================================
+function openForumKeyPopup(){
+    document.getElementById("forumKeyPopup").style.display = "block";
+    document.getElementById("forumKeyInput").value = "";
+    document.getElementById("forumKeyErr").innerText = "";
+    document.getElementById("forumKeyInput").focus();
+}
+function closeForumKeyPopup(){
+    document.getElementById("forumKeyPopup").style.display = "none";
+    document.getElementById("forumKeyErr").innerText = "";
+}
+function checkForumKey(){
+    var key = document.getElementById("forumKeyInput").value.trim().toLowerCase();
+    if(key === "memorialfile"){
+        closeForumKeyPopup();
+        window.location.href = "https://mc-zian.github.io/argqingshu/";
     }else{
-        document.getElementById("choiceErr").style.display="block";
+        document.getElementById("forumKeyErr").innerText = "❌ 密钥错误，请重试。";
+        document.getElementById("forumKeyInput").value = "";
+        document.getElementById("forumKeyInput").focus();
     }
 }
 
-function showPage(id){
-    pagesIdList.forEach(pid=>{
-        document.getElementById("page_"+pid).style.display = "none";
-    });
-    document.getElementById("page_"+id).style.display = "block";
-
-    if(archiveUnlocked){
-        endingNavBlock.style.display = "block";
+// ============================================================
+// 卷宗密钥弹窗
+// ============================================================
+function openVolumeKeyPopup(){
+    document.getElementById("volumeKeyPopup").style.display = "block";
+    document.getElementById("volumeKeyInput").value = "";
+    document.getElementById("volumeKeyErr").innerText = "";
+    document.getElementById("volumeKeyInput").focus();
+}
+function closeVolumeKeyPopup(){
+    document.getElementById("volumeKeyPopup").style.display = "none";
+    document.getElementById("volumeKeyErr").innerText = "";
+}
+function checkVolumeKey(){
+    var key = document.getElementById("volumeKeyInput").value.trim().toLowerCase();
+    if(key === "invisiblet"){
+        closeVolumeKeyPopup();
+        startBlackScreen();
     }else{
-        endingNavBlock.style.display = "none";
-    }
-
-    if(id === "ending" && !archiveUnlocked){
-        alert("权限不足，请先获取卷宗访问密钥");
-        showPage("index");
-        return;
-    }
-
-    if(id === "repairlog"){
-        document.getElementById("repairLogLockArea").style.display="block";
-        document.getElementById("repairLogUnlockedArea").style.display="none";
-        document.getElementById("repairPwdErr").style.display="none";
-        document.getElementById("repairPwdInput").value="";
+        document.getElementById("volumeKeyErr").innerText = "❌ 密钥错误。";
+        document.getElementById("volumeKeyInput").value = "";
+        document.getElementById("volumeKeyInput").focus();
     }
 }
 
+// ============================================================
+// 旧卷宗密钥（保留兼容）
+// ============================================================
 function openKeyPopup(){
     document.getElementById("keyPopup").style.display = "block";
 }
@@ -635,7 +1031,7 @@ function closeKeyPopup(){
     document.getElementById("keyPopup").style.display = "none";
 }
 function checkArchiveKey(){
-    let v = document.getElementById("keyInput").value.trim().toLowerCase();
+    var v = document.getElementById("keyInput").value.trim().toLowerCase();
     if(v === "memorialfile"){
         closeKeyPopup();
         archiveUnlocked = true;
@@ -646,42 +1042,63 @@ function checkArchiveKey(){
     }
 }
 
-function checkRepairPassword(){
-    const pw = document.getElementById("repairPwdInput").value.trim();
-    const errDom = document.getElementById("repairPwdErr");
-    if(pw === "0516"){
-        document.getElementById("repairLogLockArea").style.display="none";
-        document.getElementById("repairLogUnlockedArea").style.display="block";
+// ============================================================
+// 页面导航
+// ============================================================
+function showPage(id){
+    pagesIdList.forEach(function(pid){
+        var el = document.getElementById("page_"+pid);
+        if(el) el.style.display = "none";
+    });
+    var target = document.getElementById("page_"+id);
+    if(target) target.style.display = "block";
+
+    if(archiveUnlocked){
+        endingNavBlock.style.display = "block";
     }else{
-        errDom.style.display="block";
+        endingNavBlock.style.display = "none";
+    }
+
+    if(id === "repairlog"){
+        document.getElementById("repairLogLockArea").style.display = "block";
+        document.getElementById("repairLogUnlockedArea").style.display = "none";
+        document.getElementById("repairPwdErr").style.display = "none";
+        document.getElementById("repairPwdInput").value = "";
     }
 }
 
-//聊天阶段重新设计！！新增摩斯验证关卡
-let unlockStep = 0;
-const chatLog = document.getElementById("chatLog");
-const endingNavBlock = document.getElementById("endingNavBlock");
-const endingContent = document.getElementById("endingContent");
+function checkRepairPassword(){
+    var pw = document.getElementById("repairPwdInput").value.trim();
+    if(pw === "0516"){
+        document.getElementById("repairLogLockArea").style.display = "none";
+        document.getElementById("repairLogUnlockedArea").style.display = "block";
+    }else{
+        document.getElementById("repairPwdErr").style.display = "block";
+    }
+}
 
+// ============================================================
+// 联系我们 - 聊天系统 (1.5秒间隔)
+// ============================================================
 function openModernEnd(title,subtext){
-    const page = document.getElementById("modernEndPage");
-    document.getElementById("endMainTitle").innerText=title;
-    document.getElementById("endSubTitle").innerText=subtext;
-    page.style.display="flex";
-    setTimeout(()=>{
+    var page = document.getElementById("modernEndPage");
+    document.getElementById("endMainTitle").innerText = title;
+    document.getElementById("endSubTitle").innerText = subtext;
+    page.style.display = "flex";
+    setTimeout(function(){
         page.classList.add("show");
     },10);
 }
 function closeModernEnd(){
-    const page = document.getElementById("modernEndPage");
+    var page = document.getElementById("modernEndPage");
     page.classList.remove("show");
-    setTimeout(()=>{
-        page.style.display="none";
+    setTimeout(function(){
+        page.style.display = "none";
     },900);
 }
 
 function delayAppendMsg(text, delay){
-    setTimeout(()=>{
+    setTimeout(function(){
         appendMsg(text);
     },delay);
 }
@@ -691,46 +1108,61 @@ function safeHtml(text){
 }
 
 function sendChat(){
-    let inputVal = document.getElementById("chatInput").value.trim();
+    var inputVal = document.getElementById("chatInput").value.trim();
     document.getElementById("chatInput").value = "";
     if(!inputVal) return;
-    appendMsg("你："+safeHtml(inputVal));
-    let lowerInput = inputVal.trim().toLowerCase();
+    appendMsg("你：" + safeHtml(inputVal));
+    var lowerInput = inputVal.trim().toLowerCase();
 
-    //第一关凯撒密码 came male
     if(unlockStep === 0 && lowerInput === "came male"){
         unlockStep = 1;
-        delayAppendMsg("???:……你竟然把散落碎片拼出来了。",1500);
-        delayAppendMsg("???:我是顾千。那天我就在现场。",3000);
-        delayAppendMsg("???:庄军把范明磊扣在旧实验楼里面，我躲在角落不敢出声。",4500);
-        delayAppendMsg("???:这么久，我一直活在愧疚。",6000);
-        delayAppendMsg("???:但是我现在还不能完全信任你。实验楼墙壁上，滴答声留下了第二个暗号。解开摩斯碎片，把答案发给我。",7500);
+        delayAppendMsg("???: ……你竟然把散落碎片拼出来了。", 1500);
+        delayAppendMsg("???: 我是顾千。那天我就在现场。", 3000);
+        delayAppendMsg("???: 庄军把范明磊扣在旧实验楼里面，我躲在角落不敢出声。", 4500);
+        delayAppendMsg("???: 这么久，我一直活在愧疚里。", 6000);
+        delayAppendMsg("???: 但我还不能完全信任你。实验楼墙壁上，滴答声留下了第二个暗号。", 7500);
+        delayAppendMsg("???: 解开摩斯碎片，把答案发给我。", 9000);
     }
-    //第二关摩斯密码 hart cat
     else if(unlockStep === 1 && lowerInput === "hart cat"){
         unlockStep = 2;
-        delayAppendMsg("???:太好了。你听懂了墙壁上滴答的声音。现在我完全信任你。",1500);
-        delayAppendMsg("???:通往卷宗的钥匙：memorialfile。拿着这个密钥解锁卷宗入口。",3000);
-        delayAppendMsg("???:浏览完整卷宗，阅读全部往事，在卷宗页面做出属于你的最终抉择。",4500);
+        delayAppendMsg("???: 太好了。你听懂了墙壁上滴答的声音。", 1500);
+        delayAppendMsg("???: 现在我完全信任你。", 3000);
+        delayAppendMsg("???: 通往论坛的钥匙是：memorialfile。", 4500);
+        delayAppendMsg("???: 拿着这个密钥去导航栏点击'青树镇本地论坛'进入。", 6000);
+        delayAppendMsg("???: 另外，真正的卷宗需要另一把钥匙，它散落在论坛的各个角落。", 7500);
+    }
+    else if(unlockStep === 2 && lowerInput === "memorialfile"){
+        delayAppendMsg("???: 你已经知道论坛密钥了。去导航栏使用它吧。", 1500);
+        delayAppendMsg("???: 记住，卷宗需要另一把钥匙……", 3000);
     }
     else{
-        if(unlockStep===0){
-            delayAppendMsg("???:我没有看懂。试着把网页里所有被底色隐藏的文字全部找出来，里面藏着加密片段。凯撒密码、摩斯碎片、加密维修日志都埋藏线索。",1200);
+        if(unlockStep === 0){
+            delayAppendMsg("???: 我没有看懂。试着把网页里所有被隐藏的文字找出来。", 1500);
+            delayAppendMsg("???: 凯撒密码、摩斯碎片、加密维修日志都埋藏着线索。", 3000);
         }else if(unlockStep === 1){
-            delayAppendMsg("???:摩斯碎片藏在学校简介页面，滴答长短声，答案由两个英文单词组成。",1200);
+            delayAppendMsg("???: 摩斯碎片藏在学校简介页面，答案由两个英文单词组成。", 1500);
         }else{
-            delayAppendMsg("???:你已经拿到密钥，请前往卷宗入口解锁档案。",1200);
+            delayAppendMsg("???: 你已经拿到了论坛密钥。去导航栏输入 memorialfile。", 1500);
         }
     }
 }
 
 function appendMsg(text){
-    chatLog.innerHTML += "<div>"+text+"</div>";
+    chatLog.innerHTML += "<div>" + text + "</div>";
     chatLog.scrollTop = chatLog.scrollHeight;
 }
 
-const forbiddenKeywords = ["真相","结局","凶手","证据","警察","账本","庄军","范明磊"];
-const randomWarnings = [
+document.getElementById('chatInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        sendChat();
+    }
+});
+
+// ============================================================
+// 校内讨论板搜索
+// ============================================================
+var forbiddenKeywords = ["真相","结局","凶手","证据","警察","账本","庄军","范明磊"];
+var randomWarnings = [
     "该主题已被管理员删除。",
     "你没有权限访问这些内容。",
     "请不要搜索敏感关键词。",
@@ -738,7 +1170,7 @@ const randomWarnings = [
     "有些问题，最好不要问。"
 ];
 
-const forumPosts = [
+var forumPosts = [
     {kw:"实验楼",title:"旧实验楼晚上为什么还有灯光",content:"楼主｜晚风：很多同学说晚上看到实验楼有亮光，学校说是维修。<br>1楼｜过客03：我也见过，但是从来没有看见工人从里面出来。<br>2楼｜匿名用户：5月16号那天晚上，我听见楼里面有争吵的声音。<br>3楼｜路人甲：别在这里乱讲，当心账号被封。<br>4楼｜灰色影子：我绕到后窗看过，里面只有一个人的影子。"},
     {kw:"#71",title:"被删除帖子 #71",content:"楼主｜（用户已删除）：5‑16。储物间。三份心智抉择。<br>1楼｜匿名：这个帖子刚发出来半小时就没了。<br>2楼｜过客：我只刷到一眼，内容就消失了。<br>3楼｜潜水者：管理员出手速度太快了。<br>4楼｜???：有些东西不能公开。"},
     {kw:"顾千",title:"关于顾千的闲聊帖",content:"楼主｜同班同学：顾千最近下课总是一个人坐着，很少说话。<br>1楼｜路人：好像自从5月中旬之后就变成这个样子。<br>2楼｜匿名：他好像知道点什么，问他什么都摇头。<br>3楼｜旧同桌：之前他和范明磊天天黏在一起。<br>4楼｜悄悄路过：上课经常发呆，眼神很吓人。"},
@@ -752,35 +1184,294 @@ const forumPosts = [
 ];
 
 function renderForum(){
-    let s = document.getElementById("forumSearch").value.trim();
-    let resDom = document.getElementById("forumResult");
+    var s = document.getElementById("forumSearch").value.trim();
+    var resDom = document.getElementById("forumResult");
     resDom.innerHTML = "";
 
     if(!s){
-        resDom.innerHTML="<p>请输入关键词搜索帖子</p>";
+        resDom.innerHTML = "<p>请输入关键词搜索帖子</p>";
         return;
     }
 
-    if(forbiddenKeywords.includes(s)){
-        let warn = randomWarnings[Math.floor(Math.random() * randomWarnings.length)];
-        resDom.innerHTML = `<p style="color:red;">${warn}</p>`;
+    if(forbiddenKeywords.indexOf(s) !== -1){
+        var warn = randomWarnings[Math.floor(Math.random() * randomWarnings.length)];
+        resDom.innerHTML = "<p style=\"color:red;\">" + warn + "</p>";
         return;
     }
 
-    let hit = forumPosts.filter(p=>p.kw.includes(s));
-    if(hit.length===0){
-        resDom.innerHTML="<p>没有匹配帖子</p>";
+    var hit = forumPosts.filter(function(p){ return p.kw.indexOf(s) !== -1; });
+    if(hit.length === 0){
+        resDom.innerHTML = "<p>没有匹配帖子</p>";
         return;
     }
 
-    hit.forEach(p=>{
-        resDom.innerHTML += `<div style="margin:6px 0;padding:8px;border:1px solid #ccc;line-height:1.6;">
-        <b>${p.title}</b><br>
-        ${p.content}
-        </div>`;
-    })
+    hit.forEach(function(p){
+        resDom.innerHTML += "<div style=\"margin:6px 0;padding:8px;border:1px solid #ccc;line-height:1.6;\">" +
+            "<b>" + p.title + "</b><br>" +
+            p.content +
+            "</div>";
+    });
 }
-</script>
 
+// ============================================================
+// ===== 核心：黑屏卷宗 =====
+// ============================================================
+function startBlackScreen() {
+    if (blackScreenRunning) return;
+    blackScreenRunning = true;
+
+    var screen = document.getElementById("blackScreen");
+    var content = document.getElementById("blackScreenContent");
+    screen.style.display = "flex";
+    content.innerHTML = "";
+
+    var lines = [
+        { text: "你到底是谁？", delay: 500, big: true },
+        { text: "为什么要查这个案子……", delay: 2000, big: true },
+        { text: "你不该的......", delay: 500, big: true },
+    ];
+
+    for (var i = 0; i < 20; i++) {
+        lines.push({ text: "妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧", delay: 500, big: false });
+    }
+
+    var currentIndex = 0;
+    var allTexts = [];
+
+    function showNextLine() {
+        if (currentIndex >= lines.length) {
+            // 所有文字显示完毕，弹出抉择弹窗
+            setTimeout(function() {
+                document.getElementById("choiceMask").style.display = "flex";
+                document.getElementById("finalChoiceInput").value = "";
+                document.getElementById("choiceErr").innerText = "";
+                document.getElementById("choiceErr").style.display = "none";
+                document.getElementById("finalChoiceInput").focus();
+            }, 800);
+            return;
+        }
+
+        var lineData = lines[currentIndex];
+        var div = document.createElement("div");
+        div.className = "red-text";
+        if (lineData.big) {
+            div.style.fontSize = "32px";
+            div.style.fontWeight = "bold";
+        } else {
+            div.style.fontSize = "18px";
+            div.style.fontWeight = "normal";
+        }
+
+        if (currentIndex >= 3) {
+            var eyeCount = Math.floor(Math.random() * 2) + 1;
+            var eyes = "";
+            for (var e = 0; e < eyeCount; e++) {
+                eyes += " <span class=\"eye-symbol\">👁</span> ";
+            }
+            div.innerHTML = lineData.text + " " + eyes;
+            div.className = "red-text glitch-text";
+        } else {
+            div.textContent = lineData.text;
+        }
+
+        content.appendChild(div);
+
+        setTimeout(function() {
+            div.classList.add("show");
+        }, 50);
+
+        currentIndex++;
+        var nextDelay = (currentIndex < 3) ? lineData.delay : 500;
+        setTimeout(showNextLine, nextDelay);
+    }
+
+    setTimeout(showNextLine, 500);
+}
+
+// ============================================================
+// 抉择弹窗
+// ============================================================
+function closeChoicePopup(){
+    document.getElementById("choiceMask").style.display = "none";
+}
+
+function submitFinalChoice(){
+    var val = document.getElementById("finalChoiceInput").value.trim();
+    var errDom = document.getElementById("choiceErr");
+
+    if (val === "help") {
+        closeChoicePopup();
+        openTerminal();
+        return;
+    }
+
+    if (val !== "") {
+        closeChoicePopup();
+        document.getElementById("blackScreen").style.display = "none";
+        blackScreenRunning = false;
+        showBadEnding();
+    } else {
+        errDom.innerText = "请做出你的选择。";
+        errDom.style.display = "block";
+    }
+}
+
+// ============================================================
+// 终端系统
+// ============================================================
+function openTerminal(){
+    document.getElementById("terminalModal").style.display = "flex";
+    document.getElementById("terminalOutput").innerHTML = "> 终端已激活。输入 help 查看可用指令。";
+    document.getElementById("terminalInput").value = "";
+    document.getElementById("terminalInput").focus();
+}
+
+function closeTerminal(){
+    document.getElementById("terminalModal").style.display = "none";
+}
+
+function processTerminalCommand(cmd){
+    var output = document.getElementById("terminalOutput");
+    var lower = cmd.trim().toLowerCase();
+
+    if (lower === "help") {
+        output.innerHTML += "\n> 可用指令：";
+        output.innerHTML += "\n  - trust yourself  : 相信自己的判断";
+        output.innerHTML += "\n  - surrender       : 向黑暗妥协";
+        output.innerHTML += "\n  - status          : 查看碎片进度";
+        output.innerHTML += "\n  - clear           : 清空终端";
+        output.innerHTML += "\n  - exit            : 关闭终端";
+    }
+    else if (lower === "trust yourself") {
+        output.innerHTML += "\n> 你选择了相信自己。光芒正在苏醒……";
+        closeTerminal();
+        document.getElementById("blackScreen").style.display = "none";
+        blackScreenRunning = false;
+        showPerfectEnding();
+    }
+    else if (lower === "surrender") {
+        output.innerHTML += "\n> 你选择了屈服。黑暗正在蔓延……";
+        closeTerminal();
+        document.getElementById("blackScreen").style.display = "none";
+        blackScreenRunning = false;
+        showBadEnding();
+    }
+    else if (lower === "status") {
+        var progress = getFragmentProgress();
+        output.innerHTML += "\n> 碎片收集进度：" + progress;
+        output.innerHTML += "\n> 当前碎片：" + JSON.stringify(getFragments());
+    }
+    else if (lower === "clear") {
+        output.innerHTML = "> 终端已清空。";
+    }
+    else if (lower === "exit") {
+        closeTerminal();
+    }
+    else if (lower === "") {
+    }
+    else {
+        output.innerHTML += "\n> 未知指令。输入 help 查看可用指令。";
+    }
+
+    output.scrollTop = output.scrollHeight;
+}
+
+document.getElementById('terminalInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        var cmd = this.value;
+        var output = document.getElementById("terminalOutput");
+        output.innerHTML += "\n> " + cmd;
+        processTerminalCommand(cmd);
+        this.value = "";
+        output.scrollTop = output.scrollHeight;
+    }
+});
+
+// ============================================================
+// 结局系统
+// ============================================================
+function showBadEnding() {
+    var overlay = document.getElementById("endingOverlay");
+    overlay.className = "bad-ending";
+    document.getElementById("endingTitle").className = "ending-title bad";
+    document.getElementById("endingTitle").innerHTML = "■ 结局 · 无声黑暗";
+    document.getElementById("endingText").innerHTML = 
+        "你选择了妥协。真相随着你的沉默一同沉入深渊。<br><br>" +
+        "范明磊的名字被彻底遗忘，庄军的罪行被永远掩埋。<br><br>" +
+        "顾千的证词消失在档案室的灰尘里，<br>" +
+        "王浩宇的恐惧化为终身的阴影。<br><br>" +
+        "一切，都结束了。";
+    overlay.style.display = "flex";
+    setTimeout(function() {
+        overlay.classList.add("show");
+    }, 100);
+}
+
+function showPerfectEnding() {
+    var flash = document.getElementById("whiteFlash");
+    flash.style.display = "block";
+    setTimeout(function() {
+        flash.classList.add("active");
+    }, 50);
+    setTimeout(function() {
+        flash.classList.remove("active");
+        flash.style.display = "none";
+        var overlay = document.getElementById("endingOverlay");
+        overlay.className = "perfect-ending";
+        document.getElementById("endingTitle").className = "ending-title perfect";
+        document.getElementById("endingTitle").innerHTML = "■ 结局 · 破晓";
+        document.getElementById("endingText").innerHTML = 
+            "你选择了相信自己。你没有被黑暗吞噬。<br><br>" +
+            "你拼凑的碎片、收集的证词、还原的真相，最终化为一道光。<br><br>" +
+            "庄军被绳之以法，范明磊的冤屈得以昭雪。<br><br>" +
+            "顾千终于能够放下愧疚，王浩宇走出了恐惧。<br><br>" +
+            "你做到了。";
+        overlay.style.display = "flex";
+        setTimeout(function() {
+            overlay.classList.add("show");
+        }, 100);
+    }, 1600);
+}
+
+function resetAll() {
+    var overlay = document.getElementById("endingOverlay");
+    overlay.classList.remove("show");
+    overlay.style.display = "none";
+    document.getElementById("blackScreen").style.display = "none";
+    document.getElementById("blackScreenContent").innerHTML = "";
+    blackScreenRunning = false;
+    closeChoicePopup();
+    closeTerminal();
+    showPage('index');
+}
+
+// ============================================================
+// 键盘监听
+// ============================================================
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (document.getElementById("terminalModal").style.display === "flex") {
+            closeTerminal();
+        }
+        if (document.getElementById("choiceMask").style.display === "flex") {
+            closeChoicePopup();
+        }
+    }
+});
+
+// ============================================================
+// 回车监听
+// ============================================================
+document.getElementById('volumeKeyInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        checkVolumeKey();
+    }
+});
+document.getElementById('forumKeyInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        checkForumKey();
+    }
+});
+</script>
 </body>
 </html>
