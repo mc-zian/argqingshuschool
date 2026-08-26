@@ -62,6 +62,9 @@ body{
     padding:4px 6px;
     margin-top:8px;
 }
+.left-bar .forum-link:hover{
+    background:#ffeeee;
+}
 .main-content{
     padding:18px;
     vertical-align:top;
@@ -208,76 +211,20 @@ body{
     color:#bb0000;
 }
 
-/* ===== 抉择弹窗（纯黑背景，居中，覆盖文字） ===== */
+/* ===== 抉择弹窗 ===== */
 .choice-popup-mask{
     position:fixed;
     top:0;left:0;right:0;bottom:0;
-    background:#000000;
+    background:rgba(0,0,0,0.65);
     display:none;
-    z-index:400;
-    align-items:center;
-    justify-content:center;
+    z-index:120;
 }
 .choice-popup{
     width:420px;
-    background:#1a1a1a;
-    border:2px solid #660000;
-    padding:24px 28px 28px 28px;
-    box-shadow:0 0 60px rgba(100,0,0,0.3);
-}
-.choice-popup h3{
-    color:#ff2222;
-    font-family:"SimSun", serif;
-    font-size:22px;
-    margin-top:0;
-    margin-bottom:10px;
-    text-align:center;
-    letter-spacing:4px;
-}
-.choice-popup p{
-    color:#cccccc;
-    font-family:"SimSun", serif;
-    font-size:15px;
-    text-align:center;
-    line-height:1.8;
-    margin-bottom:16px;
-}
-.choice-popup .old-input{
-    width:100%;
-    box-sizing:border-box;
-    background:#0a0a0a;
-    border:2px inset #444;
-    color:#ffffff;
-    padding:6px 10px;
-    font-family:"SimSun", serif;
-    font-size:15px;
-}
-.choice-popup .old-input:focus{
-    border-color:#ff2222;
-    outline:none;
-}
-.choice-popup .btn-row{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    margin-top:14px;
-}
-.choice-popup .old-btn{
-    background:#222;
-    border:2px outset #555;
-    color:#dddddd;
-    font-family:"SimSun", serif;
-    padding:6px 24px;
-    cursor:pointer;
-}
-.choice-popup .old-btn:hover{
-    background:#333;
-}
-.choice-popup .err-text{
-    color:#ff4444;
-    text-align:center;
-    margin-top:10px;
-    font-size:14px;
+    margin:130px auto;
+    background:#F4F4FF;
+    border:2px inset #888;
+    padding:22px;
 }
 
 /* ===== 卷宗全屏黑屏 ===== */
@@ -296,30 +243,29 @@ body{
     text-align:center;
     padding:40px;
     box-sizing:border-box;
-    overflow-y:auto;
+    overflow:hidden;
 }
 #blackScreen .red-text {
     color:#ff0000;
     font-family:"SimSun", serif;
     opacity:0;
-    transition:opacity 0.4s;
-    margin:4px 0;
-    line-height:1.6;
+    transition:opacity 0.3s;
+    margin:6px 0;
 }
 #blackScreen .red-text.show {
     opacity:1;
 }
 #blackScreen .eye-symbol {
-    font-size:36px;
+    font-size:40px;
     display:inline-block;
-    animation:eyePulse 0.7s infinite alternate;
+    animation:eyePulse 0.8s infinite alternate;
 }
 @keyframes eyePulse {
-    0% { opacity:0.2; transform:scale(0.8); }
-    100% { opacity:1; transform:scale(1.3); }
+    0% { opacity:0.3; transform:scale(0.9); }
+    100% { opacity:1; transform:scale(1.2); }
 }
 #blackScreen .glitch-text {
-    animation:glitch 0.12s infinite alternate;
+    animation:glitch 0.15s infinite alternate;
 }
 @keyframes glitch {
     0% { transform:translateX(-2px); opacity:0.9; }
@@ -330,9 +276,10 @@ body{
 #terminalModal {
     position:fixed;
     top:0;left:0;right:0;bottom:0;
-    background:rgba(0,0,0,0.85);
-    z-index:500;
+    background:rgba(0,0,0,0.75);
+    z-index:250;
     display:none;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
 }
@@ -341,17 +288,17 @@ body{
     max-height:70vh;
     background:#0a0a0a;
     border:2px solid #33ff33;
-    border-radius:4px;
+    border-radius:6px;
     padding:18px 20px 20px 20px;
     font-family:"Courier New", monospace;
     color:#33ff33;
     font-size:14px;
     overflow-y:auto;
-    box-shadow:0 0 40px rgba(51,255,51,0.1);
+    box-shadow:0 0 40px rgba(51,255,51,0.15);
 }
 #terminalModal .terminal-box .terminal-output {
-    min-height:100px;
-    max-height:280px;
+    min-height:120px;
+    max-height:300px;
     overflow-y:auto;
     margin-bottom:10px;
     line-height:1.7;
@@ -401,7 +348,7 @@ body{
     position:fixed;
     top:0;left:0;right:0;bottom:0;
     background:#ffffff;
-    z-index:450;
+    z-index:400;
     display:none;
     opacity:0;
     transition:opacity 0.8s ease-out;
@@ -414,7 +361,7 @@ body{
 #endingOverlay {
     position:fixed;
     top:0;left:0;right:0;bottom:0;
-    z-index:600;
+    z-index:500;
     display:none;
     flex-direction:column;
     align-items:center;
@@ -428,7 +375,7 @@ body{
     opacity:1;
 }
 #endingOverlay.bad-ending {
-    background:#050000;
+    background:#0a0000;
 }
 #endingOverlay.perfect-ending {
     background:#0a0a1a;
@@ -521,11 +468,87 @@ body{
     margin-top:6px;
     height:20px;
 }
+
+/* ===== 2004风格红色弹窗 ===== */
+#classroomPopup {
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    z-index:160;
+}
+#classroomPopup .popup-box {
+    width:380px;
+    margin:160px auto;
+    background:#c0c0c0;
+    border:4px outset #ffffff;
+    padding:0;
+    font-family:"SimSun", serif;
+    box-shadow:4px 4px 12px rgba(0,0,0,0.5);
+}
+#classroomPopup .popup-title {
+    background:#000080;
+    color:#ffffff;
+    padding:6px 12px;
+    font-size:14px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+#classroomPopup .popup-title .close-btn {
+    background:#c0c0c0;
+    border:2px outset #ffffff;
+    color:#000;
+    font-weight:bold;
+    padding:0 8px;
+    cursor:pointer;
+    font-size:12px;
+    font-family:"SimSun", serif;
+}
+#classroomPopup .popup-title .close-btn:active {
+    border-style:inset;
+}
+#classroomPopup .popup-body {
+    padding:20px 24px 24px 24px;
+    background:#d4d0c8;
+    text-align:center;
+}
+#classroomPopup .popup-body .icon {
+    font-size:48px;
+    margin-bottom:10px;
+    display:block;
+}
+#classroomPopup .popup-body .msg {
+    color:#cc0000;
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+#classroomPopup .popup-body .sub-msg {
+    color:#444;
+    font-size:13px;
+    margin-top:12px;
+}
+#classroomPopup .popup-body .btn-row {
+    margin-top:16px;
+}
+#classroomPopup .popup-body .btn-row button {
+    border:2px outset #ffffff;
+    background:#c0c0c0;
+    padding:4px 20px;
+    cursor:pointer;
+    font-family:"SimSun", serif;
+    font-size:14px;
+}
+#classroomPopup .popup-body .btn-row button:active {
+    border-style:inset;
+}
 </style>
 </head>
 <body>
 
-<!-- ===== 结局弹窗 ===== -->
+<!-- ===== 结局弹窗（全屏） ===== -->
 <div id="endingOverlay">
     <div class="ending-box">
         <div class="ending-title" id="endingTitle"></div>
@@ -537,7 +560,7 @@ body{
 <!-- ===== 白光过场 ===== -->
 <div id="whiteFlash"></div>
 
-<!-- ===== 黑屏卷宗 ===== -->
+<!-- ===== 黑屏卷宗页面 ===== -->
 <div id="blackScreen">
     <div id="blackScreenContent"></div>
 </div>
@@ -557,21 +580,20 @@ body{
 <!-- ===== 抉择弹窗 ===== -->
 <div class="choice-popup-mask" id="choiceMask">
     <div class="choice-popup">
-        <h3>⚠ 抉择</h3>
-        <p>你感到一股无形的力量正在吞噬你的意识。</p>
-        <input class="old-input" id="finalChoiceInput" placeholder="输入你的抉择..." style="width:100%;">
-        <div class="btn-row">
-            <button class="old-btn" onclick="submitFinalChoice()">确认</button>
-            <button class="old-btn" onclick="closeChoicePopup()">沉默</button>
-        </div>
-        <div class="err-text" id="choiceErr" style="display:none;"></div>
+        <h3 style="color:#990000;">⚠ 抉择</h3>
+        <p>你感到一股无形的力量正在吞噬你的意识。你必须做出选择。</p>
+        <input class="old-input" id="finalChoiceInput" placeholder="输入你的抉择..." style="width:280px;">
+        <br><br>
+        <button class="old-btn" onclick="submitFinalChoice()">确认</button>
+        <button class="old-btn" onclick="closeChoicePopup()">沉默</button>
+        <p id="choiceErr" class="err-text" style="display:none;"></p>
     </div>
 </div>
 
 <!-- ===== 卷宗密钥弹窗 ===== -->
 <div id="volumeKeyPopup">
     <div class="popup-box">
-        <h3>📜 卷宗访问</h3>
+        <h3>�꧁꧂꧁꧂꧁꧂</h3>
         <p>此卷宗已被加密锁定。请输入访问密钥。</p>
         <input class="old-input" id="volumeKeyInput" placeholder="输入密钥" style="width:280px;">
         <br>
@@ -594,7 +616,7 @@ body{
     </div>
 </div>
 
-<!-- ===== 旧卷宗密钥弹窗（保留兼容） ===== -->
+<!-- ===== 卷宗访问密钥弹窗（原） ===== -->
 <div class="popup-mask" id="keyPopup">
     <div class="popup-box">
         <h3>访问被限制</h3>
@@ -606,7 +628,26 @@ body{
     </div>
 </div>
 
-<!-- ===== 旧结局弹窗（保留） ===== -->
+<!-- ===== 班级花名册红色弹窗 ===== -->
+<div id="classroomPopup">
+    <div class="popup-box">
+        <div class="popup-title">
+            <span>⚠ 档案访问受限</span>
+            <button class="close-btn" onclick="closeClassroomPopup()">✕</button>
+        </div>
+        <div class="popup-body">
+            <span class="icon">📛</span>
+            <div class="msg">该花名册已被摧毁</div>
+            <div class="sub-msg">此班级记录在2004年档案事故中永久丢失</div>
+            <div class="btn-row">
+                <button onclick="closeClassroomPopup()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ===== 主页面 ===== -->
 <div id="modernEndPage">
     <div class="end-main-title" id="endMainTitle"></div>
     <div class="end-sub-title" id="endSubTitle"></div>
@@ -615,8 +656,6 @@ body{
     <div class="flash-tip">档案并未真正关闭，还有碎片漂浮在数据库缝隙之中</div>
 </div>
 
-<!-- ============================================================ -->
-<!-- ===== 主页面 ===== -->
 <table class="wrap" cellpadding="0" cellspacing="0">
 <tr>
     <td colspan="2" class="top-head">
@@ -636,7 +675,7 @@ body{
         <b>站点导航菜单</b>
         <a href="#" onclick="showPage('index')">首页公告</a>
         <a href="#" onclick="showPage('schoolinfo')">学校简介</a>
-        <a href="#" onclick="showPage('class61')">六年一班档案</a>
+        <a href="#" onclick="showPage('class61')">全校班级花名册</a>
         <a href="#" onclick="showPage('teacher')">教职工名单</a>
         <a href="#" onclick="showPage('missing')">失踪事件通报</a>
         <a href="#" onclick="showPage('message')">旧留言板</a>
@@ -651,7 +690,7 @@ body{
         <p class="blink" style="color:red;font-size:12px;">部分页面记录损坏</p>
         <p style="font-size:12px;color:#666;">最后更新：2004‑06‑01</p>
 
-        <a href="#" onclick="openVolumeKeyPopup()" style="color:#990000;font-weight:bold;">📜 事件最终卷宗</a>
+        <a href="#" onclick="openVolumeKeyPopup()" style="color:#990000;font-weight:bold;">�꧁꧂꧁꧂꧁꧂꧁꧂꧁꧂</a>
 
         <div id="endingNavBlock" class="ending-hide">
             <hr>
@@ -659,6 +698,7 @@ body{
     </td>
 
     <td class="main-content">
+        <!-- ===== 首页公告 ===== -->
         <div id="page_index">
             <div class="old-box">
                 <h3>校园首页｜公开公告</h3>
@@ -672,7 +712,7 @@ body{
                 <h3>校园存档照片｜学校正门</h3>
                 <hr>
                 <img src="https://s41.ax1x.com/2026/08/25/pnpiDMR.jpg" alt="青树镇中心小学正门 2004存档照片" style="border:2px inset #888;max-width:100%;">
-                <p><small>档案备注：学校正门，拍摄时间2004‑04‑20，学校对外宣传照片</small></p>
+                <p><small>档案备注：学校正门，拍摄时间2004‑04‑20</small></p>
             </div>
             <div class="old-box">
                 <h3>存档照片｜旧实验楼</h3>
@@ -682,35 +722,48 @@ body{
             </div>
         </div>
 
+        <!-- ===== 学校简介（含正门照片） ===== -->
         <div id="page_schoolinfo" style="display:none;">
             <div class="old-box">
                 <h3>学校简介</h3>
                 <hr>
+                <img src="https://s41.ax1x.com/2026/08/25/pnpiDMR.jpg" alt="青树镇中心小学正门" style="border:2px inset #888;max-width:100%;margin-bottom:12px;">
+                <p>青树镇中心小学位于青树镇中心区域，始建于1992年，是一所全日制公办小学。学校占地面积约12000平方米，现有教学楼2栋、实验楼1栋、操场1个。</p>
                 <p>校内建有旧实验楼，五月下旬因校舍维修封闭，禁止学生靠近。后巷、地下储物间为危险区域。</p>
                 <p>校方对外报告校内无安全事故记录。维修记录编号：0405‑L71</p>
                 <p class="hide-text">.... .- .-. -  -.-. .- - 滴答长短的声响，藏着另一则讯息。储物间铁门留有划痕，王浩宇当晚躲在楼梯转角目睹部分经过。摩斯声响的答案由两个单词组成。</p>
             </div>
         </div>
 
+        <!-- ===== 全校班级花名册 ===== -->
         <div id="page_class61" style="display:none;">
             <div class="old-box">
-                <h3>六年一班班级档案</h3>
+                <h3>全校班级花名册</h3>
                 <hr>
-                <p>班主任：庄军</p>
-                <p>在册总人数：<b>45人</b></p>
-                <p>重点登记学生记录：</p>
-                <p>1. 范明磊，课余常游走废弃校舍区域。</p>
-                <p>2. 顾千，性格内向，多数时间跟随范明磊活动。5‑16跟随范明磊前往实验楼。</p>
-                <p>3. 林小雨，5月16日傍晚目击两名同学走向实验楼方向。</p>
-                <p>4. 王浩宇，事发当晚曾被班主任单独留下谈话。</p>
-                <br>
-                <p>其余在册学生：孙悦，赵阳，何佳琪，吴浩，郑子轩，周思雨，马欣，胡博文，徐磊，高梦瑶，曹宇，冯雨桐，袁航，邓佳，韩冰，吕梦琪，姚俊，方思远，石佳宁，谭哲，廖一凡，邹雨桐，熊伟，金梦，陆子豪，郝雨，龚俊，段雅，盛凯，焦梦瑶，温鹏，施雨菲，葛俊熙，安可，齐佳乐，莫凡，宁子萱，陈雨萌，黄烁，宋佳。</p>
-                <p><i>完整纸质花名册存放档案室，网页仅摘录部分条目。</i></p>
-                <p class="hide-text">FDPHPDOH</p>
-                <p class="hide-text">hint: shift‑3；#71帖子索引数字，结合摩斯片段，拼凑次要线索。</p>
+                <p style="margin-bottom:10px;color:#666;">共14个班级，部分班级档案已损坏</p>
+                <div id="classList" style="display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;font-size:14px;">
+                    <div><span style="color:#888;">📚</span> 一年级一班</div>
+                    <div><span style="color:#888;">📚</span> 一年级二班</div>
+                    <div><span style="color:#888;">📚</span> 二年级一班</div>
+                    <div><span style="color:#888;">📚</span> 二年级二班</div>
+                    <div><span style="color:#888;">📚</span> 三年级一班</div>
+                    <div><span style="color:#888;">📚</span> 三年级二班</div>
+                    <div><span style="color:#888;">📚</span> 四年级一班</div>
+                    <div><span style="color:#888;">📚</span> 四年级二班</div>
+                    <div><span style="color:#888;">📚</span> 五年级一班</div>
+                    <div><span style="color:#888;">📚</span> 五年级二班</div>
+                    <div style="color:#0000EE;text-decoration:underline;cursor:pointer;font-weight:bold;" onclick="showClassDetail('61')"><span style="color:#888;">📖</span> 六年级一班</div>
+                    <div><span style="color:#888;">📚</span> 六年级二班</div>
+                    <div><span style="color:#888;">📚</span> 六年级三班</div>
+                    <div><span style="color:#888;">📚</span> 六年级四班</div>
+                </div>
+                <div id="classDetailArea" style="margin-top:16px;display:none;border-top:1px dashed #ccc;padding-top:14px;">
+                    <div id="classDetailContent"></div>
+                </div>
             </div>
         </div>
 
+        <!-- ===== 教职工名单 ===== -->
         <div id="page_teacher" style="display:none;">
             <div class="old-box">
                 <h3>教职工名单 2004</h3>
@@ -725,6 +778,7 @@ body{
             </div>
         </div>
 
+        <!-- ===== 失踪事件通报 ===== -->
         <div id="page_missing" style="display:none;">
             <div class="old-box">
                 <h3>失踪事件通报</h3>
@@ -738,6 +792,7 @@ body{
             </div>
         </div>
 
+        <!-- ===== 旧留言板 ===== -->
         <div id="page_message" style="display:none;">
             <div class="old-box">
                 <h3>旧留言板缓存</h3>
@@ -753,6 +808,7 @@ body{
             </div>
         </div>
 
+        <!-- ===== 破损档案碎片 ===== -->
         <div id="page_cipher" style="display:none;">
             <div class="old-box">
                 <h3>破损档案碎片</h3>
@@ -765,6 +821,7 @@ body{
             </div>
         </div>
 
+        <!-- ===== 维修工人日志 ===== -->
         <div id="page_repairlog" style="display:none;">
             <div class="old-box">
                 <h3>【加密】维修工人日志</h3>
@@ -791,6 +848,7 @@ body{
             </div>
         </div>
 
+        <!-- ===== 联系我们 ===== -->
         <div id="page_contact" style="display:none;">
             <div class="old-box">
                 <h3>联系我们｜匿名消息通道</h3>
@@ -806,6 +864,7 @@ body{
             </div>
         </div>
 
+        <!-- ===== 校内讨论板 ===== -->
         <div id="page_forumIntro" style="display:none;">
             <div class="old-box">
                 <h3>校内讨论板</h3>
@@ -815,6 +874,7 @@ body{
             </div>
         </div>
 
+        <!-- ===== 讨论板内容 ===== -->
         <div id="page_forum" style="display:none;">
             <div class="old-box">
                 <h3>校园讨论板（存档副本）</h3>
@@ -912,6 +972,7 @@ body{
             </div>
         </div>
 
+        <!-- ===== 旧卷宗页面（隐藏，已被黑屏替代） ===== -->
         <div id="page_ending" class="ending-hide" style="display:none;">
             <div class="old-box">
                 <h3>事件最终卷宗</h3>
@@ -969,6 +1030,59 @@ function getFragmentProgress() {
         if (frags.indexOf(target[i]) !== -1) collected++;
     }
     return collected + "/" + target.length;
+}
+
+// ============================================================
+// 班级花名册 - 显示六一班详情
+// ============================================================
+var classDetailVisible = false;
+
+function showClassDetail(className) {
+    if (className === '61') {
+        var area = document.getElementById('classDetailArea');
+        var content = document.getElementById('classDetailContent');
+        if (classDetailVisible) {
+            area.style.display = 'none';
+            classDetailVisible = false;
+            return;
+        }
+        content.innerHTML = `
+            <p><b>六年一班班级档案</b></p>
+            <hr style="margin:6px 0 10px 0;">
+            <p>班主任：庄军</p>
+            <p>在册总人数：<b>45人</b></p>
+            <p>重点登记学生记录：</p>
+            <p>1. 范明磊，课余常游走废弃校舍区域。</p>
+            <p>2. 顾千，性格内向，多数时间跟随范明磊活动。5‑16跟随范明磊前往实验楼。</p>
+            <p>3. 林小雨，5月16日傍晚目击两名同学走向实验楼方向。</p>
+            <p>4. 王浩宇，事发当晚曾被班主任单独留下谈话。</p>
+            <br>
+            <p>其余在册学生：孙悦，赵阳，何佳琪，吴浩，郑子轩，周思雨，马欣，胡博文，徐磊，高梦瑶，曹宇，冯雨桐，袁航，邓佳，韩冰，吕梦琪，姚俊，方思远，石佳宁，谭哲，廖一凡，邹雨桐，熊伟，金梦，陆子豪，郝雨，龚俊，段雅，盛凯，焦梦瑶，温鹏，施雨菲，葛俊熙，安可，齐佳乐，莫凡，宁子萱，陈雨萌，黄烁，宋佳。</p>
+            <p><i>完整纸质花名册存放档案室，网页仅摘录部分条目。</i></p>
+            <p class="hide-text">FDPHPDOH</p>
+            <p class="hide-text">hint: shift‑3；#71帖子索引数字，结合摩斯片段，拼凑次要线索。</p>
+        `;
+        area.style.display = 'block';
+        classDetailVisible = true;
+        var items = document.querySelectorAll('#classList > div');
+        items.forEach(function(el) {
+            el.style.fontWeight = 'normal';
+            el.style.color = '#000';
+        });
+        var targetEl = document.querySelector('#classList > div:has(span:contains("六年级一班"))');
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].textContent.indexOf('六年级一班') !== -1) {
+                items[i].style.fontWeight = 'bold';
+                items[i].style.color = '#0000EE';
+            }
+        }
+    } else {
+        document.getElementById('classroomPopup').style.display = 'block';
+    }
+}
+
+function closeClassroomPopup() {
+    document.getElementById('classroomPopup').style.display = 'none';
 }
 
 // ============================================================
@@ -1064,6 +1178,15 @@ function showPage(id){
         document.getElementById("repairLogUnlockedArea").style.display = "none";
         document.getElementById("repairPwdErr").style.display = "none";
         document.getElementById("repairPwdInput").value = "";
+    }
+    if(id === "class61") {
+        document.getElementById('classDetailArea').style.display = 'none';
+        classDetailVisible = false;
+        var items = document.querySelectorAll('#classList > div');
+        items.forEach(function(el) {
+            el.style.fontWeight = 'normal';
+            el.style.color = '#000';
+        });
     }
 }
 
@@ -1236,18 +1359,16 @@ function startBlackScreen() {
     }
 
     var currentIndex = 0;
-    var allTexts = [];
 
     function showNextLine() {
         if (currentIndex >= lines.length) {
-            // 所有文字显示完毕，弹出抉择弹窗
             setTimeout(function() {
-                document.getElementById("choiceMask").style.display = "flex";
+                document.getElementById("choiceMask").style.display = "block";
                 document.getElementById("finalChoiceInput").value = "";
                 document.getElementById("choiceErr").innerText = "";
                 document.getElementById("choiceErr").style.display = "none";
                 document.getElementById("finalChoiceInput").focus();
-            }, 800);
+            }, 1000);
             return;
         }
 
@@ -1453,8 +1574,11 @@ document.addEventListener('keydown', function(e) {
         if (document.getElementById("terminalModal").style.display === "flex") {
             closeTerminal();
         }
-        if (document.getElementById("choiceMask").style.display === "flex") {
+        if (document.getElementById("choiceMask").style.display === "block") {
             closeChoicePopup();
+        }
+        if (document.getElementById("classroomPopup").style.display === "block") {
+            closeClassroomPopup();
         }
     }
 });
