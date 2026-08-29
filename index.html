@@ -2,1599 +2,570 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>青树镇中心小学 2004 历史存档站</title>
 <style>
-body{
-    background:#000080;
-    font-family:"SimSun", serif;
-    font-size:14px;
-    color:#ffffff;
-    margin:0;
-    padding:0;
-}
-.blink{animation:blink 1.2s infinite;}
-@keyframes blink{0%{opacity:1;}50%{opacity:0.15;}100%{opacity:1;}}
-.marquee-old{
-    color:red;
-    font-weight:bold;
-    letter-spacing:1px;
-}
-.wrap{
-    width:820px;
-    margin:15px auto;
-    background:#fff;
-    border:4px outset #dddddd;
-    color:#000;
-}
-.top-head{
-    background:#0000CC;
-    color:#FFEE00;
-    text-align:center;
-    padding:12px;
-    font-size:23px;
-    font-weight:bold;
-}
-.top-info{
-    font-size:12px;
-    color:#eaeaea;
-}
-.left-bar{
-    width:190px;
-    background:#E8E8FF;
-    border-right:2px solid #bbbbbb;
-    padding:12px;
-    vertical-align:top;
-}
-.left-bar a{
-    display:block;
-    margin:10px 0;
-    color:#0000EE;
-    text-decoration:none;
-    font-size:14px;
-}
-.left-bar a:active{
-    border:2px inset #999;
-}
-.left-bar .forum-link{
-    color:#cc0000;
-    font-weight:bold;
-    border:1px dotted #cc0000;
-    padding:4px 6px;
-    margin-top:8px;
-}
-.left-bar .forum-link:hover{
-    background:#ffeeee;
-}
-.main-content{
-    padding:18px;
-    vertical-align:top;
-}
-.old-box{
-    border:2px inset #aaaaaa;
-    background:#F4F4FF;
-    padding:15px;
-    margin:12px 0;
-}
-.hide-text{
-    color:#F4F4FF;
-    user-select:text;
-}
-.old-input{
-    border:2px inset #888;
-    background:#fff;
-    font-family:SimSun;
-    padding:4px;
-    width:320px;
-}
-.old-btn{
-    border:2px outset #ddd;
-    background:#e9e9e9;
-    font-family:SimSun;
-    padding:3px 12px;
-    cursor:pointer;
-}
-.ending-hide{
-    display:none;
-}
-.foot{
-    font-size:12px;
-    color:#555;
-    text-align:center;
-    padding:10px;
-}
-.blue-title{
-    color:#0000EE;
-    text-decoration:underline;
-    cursor:pointer;
-}
-.popup-mask{
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:rgba(0,0,0,0.6);
-    display:none;
-    z-index:99;
-}
-.popup-box{
-    width:400px;
-    margin:120px auto;
-    background:#F4F4FF;
-    border:2px inset #aaa;
-    padding:20px;
-}
-.forum-thread{
-    border:1px solid #aaa;
-    margin:10px 0;
-    background:#ffffff;
-}
-.floor-item{
-    padding:8px 10px;
-    border-bottom:1px dotted #cccccc;
-}
-.floor-title{
-    font-weight:bold;
-    color:#222222;
-}
-.hot-tag{
-    color:#ff3333;
-    font-weight:bold;
-}
-.sticky-tag{
-    color:#006600;
-    font-weight:bold;
-}
-
-#modernEndPage{
-    position:fixed;
-    inset:0;
-    background:#0b0b13;
-    z-index:999;
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    color:#eeeeee;
-    font-family:"Microsoft Yahei",sans-serif;
-    opacity:0;
-    transform:translateY(24px);
-    transition:opacity 0.9s ease-out, transform 0.9s ease-out;
-    overflow:auto;
-    padding:20px;
-    box-sizing:border-box;
-}
-#modernEndPage.show{
-    opacity:1;
-    transform:translateY(0px);
-}
-.end-main-title{
-    font-size:48px;
-    font-weight:bold;
-    margin-bottom:24px;
-}
-.end-sub-title{
-    font-size:20px;
-    opacity:0.75;
-    margin-bottom:24px;
-    max-width:620px;
-    text-align:center;
-    line-height:1.7;
-}
-.end-tip-refresh{
-    font-size:16px;
-    color:#bbbbbb;
-    margin-bottom:32px;
-}
-.end-btn{
-    padding:14px 32px;
-    font-size:18px;
-    border-radius:8px;
-    border:none;
-    background:#254b9c;
-    color:white;
-    cursor:pointer;
-    transition:all 0.3s;
-}
-.end-btn:hover{
-    background:#3464cc;
-}
-@keyframes flashText{
-    0%{opacity:0.25;}
-    50%{opacity:1;}
-    100%{opacity:0.25;}
-}
-.flash-tip{
-    margin-top:22px;
-    font-size:15px;
-    animation:flashText 1.4s infinite;
-    color:#9498b3;
-}
-.err-text{
-    color:#bb0000;
-}
-
-/* ===== 抉择弹窗 ===== */
-.choice-popup-mask{
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:rgba(0,0,0,0.65);
-    display:none;
-    z-index:120;
-}
-.choice-popup{
-    width:420px;
-    margin:130px auto;
-    background:#F4F4FF;
-    border:2px inset #888;
-    padding:22px;
-}
-
-/* ===== 卷宗全屏黑屏 ===== */
-#blackScreen {
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:#000000;
-    z-index:300;
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    color:#ff0000;
-    font-family:"SimSun", serif;
-    font-size:24px;
-    text-align:center;
-    padding:40px;
-    box-sizing:border-box;
-    overflow:hidden;
-}
-#blackScreen .red-text {
-    color:#ff0000;
-    font-family:"SimSun", serif;
-    opacity:0;
-    transition:opacity 0.3s;
-    margin:6px 0;
-}
-#blackScreen .red-text.show {
-    opacity:1;
-}
-#blackScreen .eye-symbol {
-    font-size:40px;
-    display:inline-block;
-    animation:eyePulse 0.8s infinite alternate;
-}
-@keyframes eyePulse {
-    0% { opacity:0.3; transform:scale(0.9); }
-    100% { opacity:1; transform:scale(1.2); }
-}
-#blackScreen .glitch-text {
-    animation:glitch 0.15s infinite alternate;
-}
-@keyframes glitch {
-    0% { transform:translateX(-2px); opacity:0.9; }
-    100% { transform:translateX(2px); opacity:1; }
-}
-
-/* ===== 终端弹窗 ===== */
-#terminalModal {
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:rgba(0,0,0,0.75);
-    z-index:250;
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-}
-#terminalModal .terminal-box {
-    width:520px;
-    max-height:70vh;
-    background:#0a0a0a;
-    border:2px solid #33ff33;
-    border-radius:6px;
-    padding:18px 20px 20px 20px;
-    font-family:"Courier New", monospace;
-    color:#33ff33;
-    font-size:14px;
-    overflow-y:auto;
-    box-shadow:0 0 40px rgba(51,255,51,0.15);
-}
-#terminalModal .terminal-box .terminal-output {
-    min-height:120px;
-    max-height:300px;
-    overflow-y:auto;
-    margin-bottom:10px;
-    line-height:1.7;
-    white-space:pre-wrap;
-    word-break:break-all;
-}
-#terminalModal .terminal-box .terminal-input-line {
-    display:flex;
-    align-items:center;
-    border-top:1px solid #1a3a1a;
-    padding-top:10px;
-}
-#terminalModal .terminal-box .terminal-prompt {
-    color:#33ff33;
-    margin-right:8px;
-}
-#terminalModal .terminal-box .terminal-input {
-    background:transparent;
-    border:none;
-    color:#33ff33;
-    font-family:"Courier New", monospace;
-    font-size:14px;
-    flex:1;
-    outline:none;
-}
-#terminalModal .terminal-box .terminal-input::selection {
-    background:#33ff33;
-    color:#000;
-}
-#terminalModal .terminal-box .terminal-close-btn {
-    margin-top:12px;
-    background:#1a1a1a;
-    border:1px solid #33ff33;
-    color:#33ff33;
-    padding:4px 16px;
-    cursor:pointer;
-    font-family:"Courier New", monospace;
-    font-size:12px;
-}
-#terminalModal .terminal-box .terminal-close-btn:hover {
-    background:#33ff33;
-    color:#000;
-}
-
-/* ===== 白光过场 ===== */
-#whiteFlash {
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:#ffffff;
-    z-index:400;
-    display:none;
-    opacity:0;
-    transition:opacity 0.8s ease-out;
-}
-#whiteFlash.active {
-    opacity:1;
-}
-
-/* ===== 结局弹窗（全屏） ===== */
-#endingOverlay {
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    z-index:500;
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:40px;
-    box-sizing:border-box;
-    opacity:0;
-    transition:opacity 1.2s ease-out;
-}
-#endingOverlay.show {
-    opacity:1;
-}
-#endingOverlay.bad-ending {
-    background:#0a0000;
-}
-#endingOverlay.perfect-ending {
-    background:#0a0a1a;
-}
-#endingOverlay .ending-box {
-    max-width:620px;
-    text-align:center;
-    color:#ffffff;
-    font-family:"SimSun", serif;
-}
-#endingOverlay .ending-box .ending-title {
-    font-size:42px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-#endingOverlay .ending-box .ending-title.bad {
-    color:#cc0000;
-}
-#endingOverlay .ending-box .ending-title.perfect {
-    color:#ffdd44;
-}
-#endingOverlay .ending-box .ending-text {
-    font-size:18px;
-    line-height:2;
-    color:#dddddd;
-    margin-bottom:28px;
-}
-#endingOverlay .ending-box .ending-btn {
-    padding:12px 36px;
-    font-size:16px;
-    background:#333;
-    border:2px solid #666;
-    color:#fff;
-    cursor:pointer;
-    font-family:"SimSun", serif;
-    transition:all 0.3s;
-}
-#endingOverlay .ending-box .ending-btn:hover {
-    background:#555;
-}
-
-/* ===== 论坛跳转密钥弹窗 ===== */
-#forumKeyPopup {
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:rgba(0,0,0,0.7);
-    display:none;
-    z-index:200;
-}
-#forumKeyPopup .popup-box {
-    width:400px;
-    margin:140px auto;
-    background:#F4F4FF;
-    border:3px inset #aaa;
-    padding:24px;
-}
-#forumKeyPopup .popup-box h3 {
-    color:#cc0000;
-    margin-top:0;
-}
-#forumKeyPopup .popup-box .err-msg {
-    color:#cc0000;
-    font-size:13px;
-    margin-top:6px;
-    height:20px;
-}
-
-/* ===== 卷宗密钥弹窗 ===== */
-#volumeKeyPopup {
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:rgba(0,0,0,0.7);
-    display:none;
-    z-index:180;
-}
-#volumeKeyPopup .popup-box {
-    width:400px;
-    margin:140px auto;
-    background:#F4F4FF;
-    border:3px inset #aaa;
-    padding:24px;
-}
-#volumeKeyPopup .popup-box h3 {
-    color:#990000;
-    margin-top:0;
-}
-#volumeKeyPopup .popup-box .err-msg {
-    color:#cc0000;
-    font-size:13px;
-    margin-top:6px;
-    height:20px;
-}
-
-/* ===== 2004风格红色弹窗 ===== */
-#classroomPopup {
-    position:fixed;
-    top:0;left:0;right:0;bottom:0;
-    background:rgba(0,0,0,0.7);
-    display:none;
-    z-index:160;
-}
-#classroomPopup .popup-box {
-    width:380px;
-    margin:160px auto;
-    background:#c0c0c0;
-    border:4px outset #ffffff;
-    padding:0;
-    font-family:"SimSun", serif;
-    box-shadow:4px 4px 12px rgba(0,0,0,0.5);
-}
-#classroomPopup .popup-title {
-    background:#000080;
-    color:#ffffff;
-    padding:6px 12px;
-    font-size:14px;
-    font-weight:bold;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-#classroomPopup .popup-title .close-btn {
-    background:#c0c0c0;
-    border:2px outset #ffffff;
-    color:#000;
-    font-weight:bold;
-    padding:0 8px;
-    cursor:pointer;
-    font-size:12px;
-    font-family:"SimSun", serif;
-}
-#classroomPopup .popup-title .close-btn:active {
-    border-style:inset;
-}
-#classroomPopup .popup-body {
-    padding:20px 24px 24px 24px;
-    background:#d4d0c8;
-    text-align:center;
-}
-#classroomPopup .popup-body .icon {
-    font-size:48px;
-    margin-bottom:10px;
-    display:block;
-}
-#classroomPopup .popup-body .msg {
-    color:#cc0000;
-    font-size:20px;
-    font-weight:bold;
-    letter-spacing:2px;
-}
-#classroomPopup .popup-body .sub-msg {
-    color:#444;
-    font-size:13px;
-    margin-top:12px;
-}
-#classroomPopup .popup-body .btn-row {
-    margin-top:16px;
-}
-#classroomPopup .popup-body .btn-row button {
-    border:2px outset #ffffff;
-    background:#c0c0c0;
-    padding:4px 20px;
-    cursor:pointer;
-    font-family:"SimSun", serif;
-    font-size:14px;
-}
-#classroomPopup .popup-body .btn-row button:active {
-    border-style:inset;
+*{box-sizing:border-box}
+body{background:#000080;font-family:"SimSun",serif;font-size:14px;color:#fff;margin:0;padding:0;-webkit-text-size-adjust:100%}
+.blink{animation:blink 1.2s infinite}
+@keyframes blink{0%{opacity:1}50%{opacity:0.15}100%{opacity:1}}
+.marquee-old{color:red;font-weight:bold;letter-spacing:1px}
+.wrap{width:100%;max-width:820px;margin:10px auto;background:#fff;border:4px outset #ddd;color:#000}
+.top-head{background:#00C;color:#FE0;text-align:center;padding:12px 8px;font-size:clamp(18px,4vw,23px);font-weight:bold}
+.top-info{font-size:clamp(10px,2vw,12px);color:#eaeaea}
+.left-bar{width:180px;background:#E8E8FF;border-right:2px solid #bbb;padding:10px;vertical-align:top}
+.left-bar a{display:block;margin:8px 0;color:#00E;text-decoration:none;font-size:clamp(13px,1.8vw,14px);padding:2px 0;touch-action:manipulation}
+.left-bar a:active{border:2px inset #999}
+.left-bar .forum-link{color:#c00;font-weight:bold;border:1px dotted #c00;padding:4px 6px;margin-top:6px}
+.main-content{padding:14px;vertical-align:top}
+.old-box{border:2px inset #aaa;background:#F4F4FF;padding:12px;margin:10px 0}
+.old-box h3{font-size:clamp(15px,2.5vw,18px);margin:0 0 6px 0}
+.old-box p{font-size:clamp(13px,1.6vw,14px);line-height:1.7;margin:4px 0}
+.hide-text{color:#F4F4FF;user-select:text}
+.old-input{border:2px inset #888;background:#fff;font-family:SimSun;padding:6px 8px;width:100%;max-width:320px;font-size:clamp(13px,1.6vw,14px)}
+.old-btn{border:2px outset #ddd;background:#e9e9e9;font-family:SimSun;padding:5px 14px;cursor:pointer;touch-action:manipulation;font-size:clamp(13px,1.6vw,14px)}
+.ending-hide{display:none}
+.foot{font-size:clamp(11px,1.4vw,12px);color:#555;text-align:center;padding:8px}
+.blue-title{color:#00E;text-decoration:underline;cursor:pointer;touch-action:manipulation}
+.popup-mask{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);display:none;z-index:99;align-items:center;justify-content:center}
+.popup-box{width:92%;max-width:400px;margin:0 auto;background:#F4F4FF;border:2px inset #aaa;padding:20px}
+.popup-box h3{margin-top:0;font-size:clamp(16px,2.5vw,18px)}
+.popup-box p{font-size:clamp(13px,1.6vw,14px)}
+.forum-thread{border:1px solid #aaa;margin:10px 0;background:#fff}
+.floor-item{padding:8px 10px;border-bottom:1px dotted #ccc}
+.floor-item p{font-size:clamp(13px,1.6vw,14px);margin:4px 0}
+.floor-title{font-weight:bold;color:#222}
+.hot-tag{color:#f33;font-weight:bold}
+.sticky-tag{color:#060;font-weight:bold}
+#modernEndPage{position:fixed;inset:0;background:#0b0b13;z-index:999;display:none;flex-direction:column;align-items:center;justify-content:center;color:#eee;font-family:"Microsoft Yahei",sans-serif;opacity:0;transform:translateY(24px);transition:opacity .9s ease-out,transform .9s ease-out;overflow:auto;padding:20px;box-sizing:border-box}
+#modernEndPage.show{opacity:1;transform:translateY(0)}
+.end-main-title{font-size:clamp(28px,6vw,48px);font-weight:bold;margin-bottom:20px;text-align:center}
+.end-sub-title{font-size:clamp(16px,2.5vw,20px);opacity:.75;margin-bottom:20px;max-width:620px;text-align:center;line-height:1.7}
+.end-tip-refresh{font-size:clamp(13px,1.6vw,16px);color:#bbb;margin-bottom:24px;text-align:center}
+.end-btn{padding:12px 28px;font-size:clamp(15px,2vw,18px);border-radius:8px;border:none;background:#254b9c;color:#fff;cursor:pointer;touch-action:manipulation}
+.flash-tip{margin-top:18px;font-size:clamp(13px,1.6vw,15px);animation:flashText 1.4s infinite;color:#9498b3;text-align:center}
+.err-text{color:#b00}
+.choice-popup-mask{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.65);display:none;z-index:120;align-items:center;justify-content:center}
+.choice-popup{width:92%;max-width:420px;margin:0 auto;background:#F4F4FF;border:2px inset #888;padding:20px}
+.choice-popup h3{font-size:clamp(17px,2.5vw,20px)}
+.choice-popup p{font-size:clamp(14px,1.8vw,16px)}
+.choice-popup .old-input{max-width:100%}
+#blackScreen{position:fixed;top:0;left:0;right:0;bottom:0;background:#000;z-index:300;display:none;flex-direction:column;align-items:center;justify-content:center;color:red;font-family:"SimSun",serif;font-size:clamp(18px,3vw,24px);text-align:center;padding:30px 20px;box-sizing:border-box;overflow:hidden}
+#blackScreen .red-text{color:red;font-family:"SimSun",serif;opacity:0;transition:opacity .3s;margin:4px 0}
+#blackScreen .red-text.show{opacity:1}
+#blackScreen .eye-symbol{font-size:clamp(30px,5vw,40px);display:inline-block;animation:eyePulse .8s infinite alternate}
+@keyframes eyePulse{0%{opacity:.3;transform:scale(.9)}100%{opacity:1;transform:scale(1.2)}}
+#blackScreen .glitch-text{animation:glitch .15s infinite alternate}
+@keyframes glitch{0%{transform:translateX(-2px);opacity:.9}100%{transform:translateX(2px);opacity:1}}
+#terminalModal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:250;display:none;align-items:center;justify-content:center}
+#terminalModal .terminal-box{width:94%;max-width:520px;max-height:75vh;background:#0a0a0a;border:2px solid #3f3;border-radius:6px;padding:16px;font-family:"Courier New",monospace;color:#3f3;font-size:clamp(13px,1.6vw,14px);overflow-y:auto}
+#terminalModal .terminal-box .terminal-output{min-height:80px;max-height:250px;overflow-y:auto;margin-bottom:8px;line-height:1.7;white-space:pre-wrap;word-break:break-all}
+#terminalModal .terminal-box .terminal-input-line{display:flex;align-items:center;border-top:1px solid #1a3a1a;padding-top:8px}
+#terminalModal .terminal-box .terminal-prompt{color:#3f3;margin-right:6px}
+#terminalModal .terminal-box .terminal-input{background:transparent;border:none;color:#3f3;font-family:"Courier New",monospace;font-size:clamp(13px,1.6vw,14px);flex:1;outline:none}
+#terminalModal .terminal-box .terminal-close-btn{margin-top:10px;background:#1a1a1a;border:1px solid #3f3;color:#3f3;padding:4px 14px;cursor:pointer;font-family:"Courier New",monospace;font-size:clamp(11px,1.4vw,12px);touch-action:manipulation}
+#whiteFlash{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:400;display:none;opacity:0;transition:opacity .8s ease-out}
+#whiteFlash.active{opacity:1}
+#endingOverlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;display:none;flex-direction:column;align-items:center;justify-content:center;padding:30px;box-sizing:border-box;opacity:0;transition:opacity 1.2s ease-out}
+#endingOverlay.show{opacity:1}
+#endingOverlay.bad-ending{background:#0a0000}
+#endingOverlay.perfect-ending{background:#0a0a1a}
+#endingOverlay .ending-box{max-width:620px;text-align:center;color:#fff;font-family:"SimSun",serif}
+#endingOverlay .ending-box .ending-title{font-size:clamp(28px,5vw,42px);font-weight:bold;margin-bottom:16px}
+#endingOverlay .ending-box .ending-title.bad{color:#c00}
+#endingOverlay .ending-box .ending-title.perfect{color:#fd4}
+#endingOverlay .ending-box .ending-text{font-size:clamp(15px,2vw,18px);line-height:2;color:#ddd;margin-bottom:20px}
+#endingOverlay .ending-box .ending-btn{padding:10px 30px;font-size:clamp(14px,1.8vw,16px);background:#333;border:2px solid #666;color:#fff;cursor:pointer;font-family:"SimSun",serif;touch-action:manipulation}
+#endingOverlay .ending-box .ending-btn:hover{background:#555}
+#forumKeyPopup,#volumeKeyPopup{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:none;z-index:200;align-items:center;justify-content:center}
+#forumKeyPopup .popup-box,#volumeKeyPopup .popup-box{width:92%;max-width:400px;margin:0 auto;background:#F4F4FF;border:3px inset #aaa;padding:20px}
+#forumKeyPopup .popup-box h3,#volumeKeyPopup .popup-box h3{color:#c00;margin-top:0;font-size:clamp(16px,2.5vw,18px)}
+#forumKeyPopup .popup-box .err-msg,#volumeKeyPopup .popup-box .err-msg{color:#c00;font-size:13px;margin-top:6px;height:20px}
+#classroomPopup{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:none;z-index:160;align-items:center;justify-content:center}
+#classroomPopup .popup-box{width:92%;max-width:380px;margin:0 auto;background:#c0c0c0;border:4px outset #fff;padding:0;font-family:"SimSun",serif}
+#classroomPopup .popup-title{background:#000080;color:#fff;padding:6px 12px;font-size:clamp(13px,1.6vw,14px);font-weight:bold;display:flex;align-items:center;justify-content:space-between}
+#classroomPopup .popup-title .close-btn{background:#c0c0c0;border:2px outset #fff;color:#000;font-weight:bold;padding:0 8px;cursor:pointer;font-size:clamp(12px,1.5vw,14px);font-family:"SimSun",serif;touch-action:manipulation}
+#classroomPopup .popup-body{padding:18px 20px 20px;background:#d4d0c8;text-align:center}
+#classroomPopup .popup-body .icon{font-size:clamp(36px,6vw,48px);display:block;margin-bottom:8px}
+#classroomPopup .popup-body .msg{color:#c00;font-size:clamp(18px,3vw,20px);font-weight:bold;letter-spacing:2px}
+#classroomPopup .popup-body .sub-msg{color:#444;font-size:clamp(12px,1.5vw,13px);margin-top:10px}
+#classroomPopup .popup-body .btn-row{margin-top:14px}
+#classroomPopup .popup-body .btn-row button{border:2px outset #fff;background:#c0c0c0;padding:4px 18px;cursor:pointer;font-family:"SimSun",serif;font-size:clamp(13px,1.6vw,14px);touch-action:manipulation}
+@media (max-width:640px){
+.left-bar{width:100%;display:block;border-right:none;border-bottom:2px solid #bbb;padding:8px 12px}
+.left-bar a{display:inline-block;margin:4px 8px 4px 0;font-size:13px;padding:3px 6px}
+.left-bar .forum-link{display:inline-block;margin:4px 6px 4px 0}
+.left-bar .blink,.left-bar p{display:inline-block;margin:4px 6px 4px 0;font-size:12px}
+.left-bar br{display:none}
+.main-content{padding:10px}
+.old-box{padding:10px}
+.old-box img{max-width:100%;height:auto}
+.wrap{margin:6px auto}
+.top-head{padding:10px 6px}
+.popup-box{padding:16px;margin:10px auto}
+#terminalModal .terminal-box{padding:12px;max-height:80vh}
+.choice-popup{padding:16px}
+#classroomPopup .popup-box{max-width:340px}
+.old-input{max-width:100%;font-size:15px}
+.old-btn{padding:6px 14px;font-size:14px}
+#forumKeyPopup .popup-box,#volumeKeyPopup .popup-box{padding:16px}
+.left-bar .forum-link{font-size:13px;padding:3px 6px}
+.left-bar a[style*="color:#990000"]{display:inline-block;font-size:13px;margin:4px 6px 4px 0}
+}
+@media (max-width:400px){
+.left-bar a{font-size:12px;margin:3px 4px 3px 0;padding:2px 4px}
+.old-box p{font-size:12px}
+.old-box h3{font-size:15px}
+.top-head{font-size:16px;padding:8px 4px}
+.main-content{padding:6px}
+.old-box{padding:8px}
+.popup-box{padding:12px;width:96%}
+.choice-popup{padding:14px;width:96%}
+.popup-box h3{font-size:15px}
+#classroomPopup .popup-box .msg{font-size:16px}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== 结局弹窗（全屏） ===== -->
+<!-- ===== 结局弹窗 ===== -->
 <div id="endingOverlay">
-    <div class="ending-box">
-        <div class="ending-title" id="endingTitle"></div>
-        <div class="ending-text" id="endingText"></div>
-        <button class="ending-btn" onclick="resetAll()">重新开始</button>
-    </div>
+<div class="ending-box">
+<div class="ending-title" id="endingTitle"></div>
+<div class="ending-text" id="endingText"></div>
+<button class="ending-btn" onclick="resetAll()">重新开始</button>
+</div>
 </div>
 
 <!-- ===== 白光过场 ===== -->
 <div id="whiteFlash"></div>
 
-<!-- ===== 黑屏卷宗页面 ===== -->
-<div id="blackScreen">
-    <div id="blackScreenContent"></div>
-</div>
+<!-- ===== 黑屏卷宗 ===== -->
+<div id="blackScreen"><div id="blackScreenContent"></div></div>
 
-<!-- ===== 终端弹窗 ===== -->
+<!-- ===== 终端 ===== -->
 <div id="terminalModal">
-    <div class="terminal-box">
-        <div class="terminal-output" id="terminalOutput">> 终端已激活。输入 help 查看可用指令。</div>
-        <div class="terminal-input-line">
-            <span class="terminal-prompt">></span>
-            <input class="terminal-input" id="terminalInput" type="text" autofocus placeholder="输入指令...">
-        </div>
-        <button class="terminal-close-btn" onclick="closeTerminal()">关闭终端</button>
-    </div>
+<div class="terminal-box">
+<div class="terminal-output" id="terminalOutput">> 终端已激活。输入 help 查看可用指令。</div>
+<div class="terminal-input-line">
+<span class="terminal-prompt">></span>
+<input class="terminal-input" id="terminalInput" type="text" autofocus placeholder="输入指令...">
+</div>
+<button class="terminal-close-btn" onclick="closeTerminal()">关闭终端</button>
+</div>
 </div>
 
 <!-- ===== 抉择弹窗 ===== -->
 <div class="choice-popup-mask" id="choiceMask">
-    <div class="choice-popup">
-        <h3 style="color:#990000;">⚠ 抉择</h3>
-        <p>你感到一股无形的力量正在吞噬你的意识。你必须做出选择。</p>
-        <input class="old-input" id="finalChoiceInput" placeholder="输入你的抉择..." style="width:280px;">
-        <br><br>
-        <button class="old-btn" onclick="submitFinalChoice()">确认</button>
-        <button class="old-btn" onclick="closeChoicePopup()">沉默</button>
-        <p id="choiceErr" class="err-text" style="display:none;"></p>
-    </div>
+<div class="choice-popup">
+<h3 style="color:#990000;">⚠ 抉择</h3>
+<p>你感到一股无形的力量正在吞噬你的意识。你必须做出选择。</p>
+<input class="old-input" id="finalChoiceInput" placeholder="输入你的抉择..." style="width:100%;">
+<div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+<button class="old-btn" onclick="submitFinalChoice()">确认</button>
+<button class="old-btn" onclick="closeChoicePopup()">沉默</button>
+</div>
+<p id="choiceErr" class="err-text" style="display:none;"></p>
+</div>
 </div>
 
 <!-- ===== 卷宗密钥弹窗 ===== -->
 <div id="volumeKeyPopup">
-    <div class="popup-box">
-        <h3>�����</h3>
-        <p>此卷宗已被加密锁定。请输入访问密钥。</p>
-        <input class="old-input" id="volumeKeyInput" placeholder="输入密钥" style="width:280px;">
-        <br>
-        <button class="old-btn" onclick="checkVolumeKey()">确认</button>
-        <button class="old-btn" onclick="closeVolumeKeyPopup()">取消</button>
-        <div class="err-msg" id="volumeKeyErr"></div>
-    </div>
+<div class="popup-box">
+<h3>�꧁꧂꧁꧂꧁꧂</h3>
+<p>此卷宗已被加密锁定。请输入访问密钥。</p>
+<input class="old-input" id="volumeKeyInput" placeholder="输入密钥" style="max-width:100%;">
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+<button class="old-btn" onclick="checkVolumeKey()">确认</button>
+<button class="old-btn" onclick="closeVolumeKeyPopup()">取消</button>
+</div>
+<div class="err-msg" id="volumeKeyErr"></div>
+</div>
 </div>
 
 <!-- ===== 论坛跳转密钥弹窗 ===== -->
 <div id="forumKeyPopup">
-    <div class="popup-box">
-        <h3>🔐 访问外部论坛</h3>
-        <p>青树镇本地论坛已被加密保护，请输入访问密钥。</p>
-        <input class="old-input" id="forumKeyInput" placeholder="请输入密钥" style="width:280px;">
-        <br>
-        <button class="old-btn" onclick="checkForumKey()">确认</button>
-        <button class="old-btn" onclick="closeForumKeyPopup()">取消</button>
-        <div class="err-msg" id="forumKeyErr"></div>
-    </div>
+<div class="popup-box">
+<h3>🔐 访问外部论坛</h3>
+<p>青树镇本地论坛已被加密保护，请输入访问密钥。</p>
+<input class="old-input" id="forumKeyInput" placeholder="请输入密钥" style="max-width:100%;">
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+<button class="old-btn" onclick="checkForumKey()">确认</button>
+<button class="old-btn" onclick="closeForumKeyPopup()">取消</button>
+</div>
+<div class="err-msg" id="forumKeyErr"></div>
+</div>
 </div>
 
-<!-- ===== 卷宗访问密钥弹窗（原） ===== -->
+<!-- ===== 旧卷宗密钥弹窗 ===== -->
 <div class="popup-mask" id="keyPopup">
-    <div class="popup-box">
-        <h3>访问被限制</h3>
-        <p>需要输入卷宗访问密钥</p>
-        <input class="old-input" id="keyInput" placeholder="输入密钥">
-        <br><br>
-        <button class="old-btn" onclick="checkArchiveKey()">确认</button>
-        <button class="old-btn" onclick="closeKeyPopup()">关闭</button>
-    </div>
+<div class="popup-box">
+<h3>访问被限制</h3>
+<p>需要输入卷宗访问密钥</p>
+<input class="old-input" id="keyInput" placeholder="输入密钥" style="max-width:100%;">
+<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+<button class="old-btn" onclick="checkArchiveKey()">确认</button>
+<button class="old-btn" onclick="closeKeyPopup()">关闭</button>
+</div>
+</div>
 </div>
 
 <!-- ===== 班级花名册红色弹窗 ===== -->
 <div id="classroomPopup">
-    <div class="popup-box">
-        <div class="popup-title">
-            <span>⚠ 档案访问受限</span>
-            <button class="close-btn" onclick="closeClassroomPopup()">✕</button>
-        </div>
-        <div class="popup-body">
-            <span class="icon">📛</span>
-            <div class="msg">该花名册已被摧毁</div>
-            <div class="sub-msg">此班级记录在2004年档案事故中永久丢失</div>
-            <div class="btn-row">
-                <button onclick="closeClassroomPopup()">确定</button>
-            </div>
-        </div>
-    </div>
+<div class="popup-box">
+<div class="popup-title"><span>⚠ 档案访问受限</span><button class="close-btn" onclick="closeClassroomPopup()">✕</button></div>
+<div class="popup-body">
+<span class="icon">📛</span>
+<div class="msg">该花名册已被摧毁</div>
+<div class="sub-msg">此班级记录在2004年档案事故中永久丢失</div>
+<div class="btn-row"><button onclick="closeClassroomPopup()">确定</button></div>
+</div>
+</div>
 </div>
 
-<!-- ============================================================ -->
 <!-- ===== 主页面 ===== -->
 <div id="modernEndPage">
-    <div class="end-main-title" id="endMainTitle"></div>
-    <div class="end-sub-title" id="endSubTitle"></div>
-    <div class="end-tip-refresh">⚠ 关闭本网页标签页或者刷新页面，重置全部记录，即可探索其他结局分支</div>
-    <button class="end-btn" onclick="closeModernEnd()">关闭结局弹窗</button>
-    <div class="flash-tip">档案并未真正关闭，还有碎片漂浮在数据库缝隙之中</div>
+<div class="end-main-title" id="endMainTitle"></div>
+<div class="end-sub-title" id="endSubTitle"></div>
+<div class="end-tip-refresh">⚠ 关闭本网页标签页或者刷新页面，重置全部记录，即可探索其他结局分支</div>
+<button class="end-btn" onclick="closeModernEnd()">关闭结局弹窗</button>
+<div class="flash-tip">档案并未真正关闭，还有碎片漂浮在数据库缝隙之中</div>
 </div>
 
 <table class="wrap" cellpadding="0" cellspacing="0">
+<tr><td colspan="2" class="top-head">青树镇中心小学 官方存档站点 <br><span class="top-info">Archive 2004 | 仅IE5/IE6兼容 | 部分数据损坏丢失</span></td></tr>
+<tr><td colspan="2"><marquee scrollamount="2" class="marquee-old" id="marqueeText">【系统异常警告】2004.05.16 学生档案异常封存｜旧实验楼区域资料加密锁定｜多条用户留言被强制删除</marquee></td></tr>
 <tr>
-    <td colspan="2" class="top-head">
-        青树镇中心小学 官方存档站点 <br>
-        <span class="top-info">Archive 2004 | 仅IE5/IE6兼容 | 部分数据损坏丢失</span>
-    </td>
-</tr>
-<tr>
-    <td colspan="2">
-        <marquee scrollamount="2" class="marquee-old" id="marqueeText">
-            【系统异常警告】2004.05.16 学生档案异常封存｜旧实验楼区域资料加密锁定｜多条用户留言被强制删除
-        </marquee>
-    </td>
-</tr>
-<tr>
-    <td class="left-bar">
-        <b>站点导航菜单</b>
-        <a href="#" onclick="showPage('index')">首页公告</a>
-        <a href="#" onclick="showPage('schoolinfo')">学校简介</a>
-        <a href="#" onclick="showPage('class61')">全校班级花名册</a>
-        <a href="#" onclick="showPage('teacher')">教职工名单</a>
-        <a href="#" onclick="showPage('missing')">失踪事件通报</a>
-        <a href="#" onclick="showPage('message')">旧留言板</a>
-        <a href="#" onclick="showPage('cipher')">破损档案碎片</a>
-        <a href="#" onclick="showPage('repairlog')">维修工人日志</a>
+<td class="left-bar">
+<b>站点导航菜单</b>
+<a href="#" onclick="showPage('index')">首页公告</a>
+<a href="#" onclick="showPage('schoolinfo')">学校简介</a>
+<a href="#" onclick="showPage('class61')">全校班级花名册</a>
+<a href="#" onclick="showPage('teacher')">教职工名单</a>
+<a href="#" onclick="showPage('missing')">失踪事件通报</a>
+<a href="#" onclick="showPage('message')">旧留言板</a>
+<a href="#" onclick="showPage('cipher')">破损档案碎片</a>
+<a href="#" onclick="showPage('repairlog')">【加密】维修工人日志</a>
+<a href="#" onclick="showPage('contact')">联系我们</a>
+<a href="#" onclick="showPage('forumIntro')">校内讨论板</a>
+<a href="#" onclick="openForumKeyPopup()" class="forum-link">>> 青树镇本地论坛</a>
+<p class="blink" style="color:red;font-size:12px;display:inline-block;">部分页面记录损坏</p>
+<p style="font-size:12px;color:#666;display:inline-block;margin-left:8px;">最后更新：2004‑06‑01</p>
+<a href="#" onclick="openVolumeKeyPopup()" style="color:#990000;font-weight:bold;">�꧁꧂꧁꧂꧁꧂꧁꧂꧁꧂</a>
+<div id="endingNavBlock" class="ending-hide"><hr></div>
+</td>
+<td class="main-content">
 
-        <a href="#" onclick="showPage('contact')">联系我们</a>
-        <a href="#" onclick="showPage('forumIntro')">校内讨论板</a>
+<!-- 首页 -->
+<div id="page_index">
+<div class="old-box"><h3>校园首页｜公开公告</h3><hr><p>欢迎访问青树镇中心小学存档网站。本校建立于1992年。</p><p>六年级一班范明磊，于2004‑05‑16傍晚离校后下落不明。警方介入调查，暂无结论。相关校内记录已封存归档。</p><p>校方对外判断该生为私自离校出走。</p><p class="hide-text">有些东西，只有全部选中页面才看得见。5‑16，实验楼。凯撒移位，数字向左推移三位，FDPHPDOH。维修日志密码来自事件发生月日。三条道路，等待某人做出选择。</p></div>
+<div class="old-box"><h3>校园存档照片｜学校正门</h3><hr><img src="https://s41.ax1x.com/2026/08/25/pnpiDMR.jpg" alt="青树镇中心小学正门" style="border:2px inset #888;max-width:100%;"><p><small>档案备注：学校正门，拍摄时间2004‑04‑20</small></p></div>
+<div class="old-box"><h3>存档照片｜旧实验楼</h3><hr><img src="https://s41.ax1x.com/2026/08/25/pnpPucR.png" alt="旧实验楼" style="border:2px inset #888;max-width:100%;"><p><small>档案备注：图像存在局部损坏，拍摄时间2004‑05‑14</small></p></div>
+</div>
 
-        <a href="#" onclick="openForumKeyPopup()" class="forum-link">>> 青树镇本地论坛</a>
+<!-- 学校简介 -->
+<div id="page_schoolinfo" style="display:none;">
+<div class="old-box"><h3>学校简介</h3><hr><img src="https://s41.ax1x.com/2026/08/25/pnpiDMR.jpg" alt="青树镇中心小学正门" style="border:2px inset #888;max-width:100%;margin-bottom:10px;"><p>青树镇中心小学位于青树镇中心区域，始建于1992年，是一所全日制公办小学。学校占地面积约12000平方米，现有教学楼2栋、实验楼1栋、操场1个。</p><p>校内建有旧实验楼，五月下旬因校舍维修封闭，禁止学生靠近。后巷、地下储物间为危险区域。</p><p>校方对外报告校内无安全事故记录。维修记录编号：0405‑L71</p><p class="hide-text">.... .- .-. -  -.-. .- - 滴答长短的声响，藏着另一则讯息。储物间铁门留有划痕，王浩宇当晚躲在楼梯转角目睹部分经过。摩斯声响的答案由两个单词组成。</p></div>
+</div>
 
-        <p class="blink" style="color:red;font-size:12px;">部分页面记录损坏</p>
-        <p style="font-size:12px;color:#666;">最后更新：2004‑06‑01</p>
+<!-- 全校班级花名册 -->
+<div id="page_class61" style="display:none;">
+<div class="old-box"><h3>全校班级花名册</h3><hr><p style="margin-bottom:10px;color:#666;">共14个班级，部分班级档案已损坏</p>
+<div id="classList" style="display:grid;grid-template-columns:1fr 1fr;gap:6px 15px;font-size:clamp(13px,1.6vw,14px);">
+<div><span style="color:#888;">📚</span> 一年级一班</div>
+<div><span style="color:#888;">📚</span> 一年级二班</div>
+<div><span style="color:#888;">📚</span> 二年级一班</div>
+<div><span style="color:#888;">📚</span> 二年级二班</div>
+<div><span style="color:#888;">📚</span> 三年级一班</div>
+<div><span style="color:#888;">📚</span> 三年级二班</div>
+<div><span style="color:#888;">📚</span> 四年级一班</div>
+<div><span style="color:#888;">📚</span> 四年级二班</div>
+<div><span style="color:#888;">📚</span> 五年级一班</div>
+<div><span style="color:#888;">📚</span> 五年级二班</div>
+<div style="color:#00E;text-decoration:underline;cursor:pointer;font-weight:bold;" onclick="showClassDetail('61')"><span style="color:#888;">📖</span> 六年级一班</div>
+<div><span style="color:#888;">📚</span> 六年级二班</div>
+<div><span style="color:#888;">📚</span> 六年级三班</div>
+<div><span style="color:#888;">📚</span> 六年级四班</div>
+</div>
+<div id="classDetailArea" style="margin-top:14px;display:none;border-top:1px dashed #ccc;padding-top:12px;"><div id="classDetailContent"></div></div>
+</div>
+</div>
 
-        <a href="#" onclick="openVolumeKeyPopup()" style="color:#990000;font-weight:bold;">�����</a>
+<!-- 教职工 -->
+<div id="page_teacher" style="display:none;">
+<div class="old-box"><h3>教职工名单 2004</h3><hr><p>庄军 —— 六年一班班主任，掌管班级各项班费采购经费。</p><p>李梅 —— 语文教师</p><p>张卫国 —— 数学教师</p><p>刘芳 —— 音乐教师</p><p>陈建军 —— 科学教师</p><p>王师傅 —— 校园维修工，5‑16深夜留在校内做检修。</p><p class="hide-text">维修工记录被加密保护，口令为事件发生的月份日期。当晚有人听见实验楼内传出争执声响。</p></div>
+</div>
 
-        <div id="endingNavBlock" class="ending-hide">
-            <hr>
-        </div>
-    </td>
+<!-- 失踪事件 -->
+<div id="page_missing" style="display:none;">
+<div class="old-box"><h3>失踪事件通报</h3><hr><p>姓名：范明磊</p><p>离校时间：2004‑05‑16 17:40</p><p>最后目击地点：旧实验楼后门。</p><p>校方初步判断：私自离校出走。</p><p>部分学生私下提及，事发当日，该生拿到了一份不该看见的纸质材料。</p><p class="hide-text">那份文档，和班级账目有关。人心会走向三条不同的道路，每一条都对应一个词语。实验楼地下储物间，遗留范明磊的书包碎片与账本残页。</p></div>
+</div>
 
-    <td class="main-content">
-        <!-- ===== 首页公告 ===== -->
-        <div id="page_index">
-            <div class="old-box">
-                <h3>校园首页｜公开公告</h3>
-                <hr>
-                <p>欢迎访问青树镇中心小学存档网站。本校建立于1992年。</p>
-                <p>六年级一班范明磊，于2004‑05‑16傍晚离校后下落不明。警方介入调查，暂无结论。相关校内记录已封存归档。</p>
-                <p>校方对外判断该生为私自离校出走。</p>
-                <p class="hide-text">有些东西，只有全部选中页面才看得见</p>
-            </div>
-            <div class="old-box">
-                <h3>校园存档照片｜学校正门</h3>
-                <hr>
-                <img src="https://s41.ax1x.com/2026/08/25/pnpiDMR.jpg" alt="青树镇中心小学正门 2004存档照片" style="border:2px inset #888;max-width:100%;">
-                <p><small>档案备注：学校正门，拍摄时间2004‑04‑20</small></p>
-            </div>
-            <div class="old-box">
-                <h3>存档照片｜旧实验楼</h3>
-                <hr>
-                <img src="https://s41.ax1x.com/2026/08/25/pnpPucR.png" alt="旧实验楼 2004存档照片" style="border:2px inset #888;max-width:100%;">
-                <p><small>档案备注：图像存在局部损坏，拍摄时间2004‑05‑14</small></p>
-            </div>
-        </div>
+<!-- 旧留言板 -->
+<div id="page_message" style="display:none;">
+<div class="old-box"><h3>旧留言板缓存</h3><hr><p>【2004‑05‑17】匿名：那天他看见了不该看见的，那个人火气很大。</p><p>【2004‑05‑18】林小雨：有个人最近总是躲躲藏藏，不敢抬头看人。</p><p>【2004‑05‑20】管理员：禁止传播不实传闻，相关留言已清除。</p><p>【2004‑05‑22】匿名：我不能站出来，后果我承担不起。只能把碎片留在网站各处。</p><p>【2004‑05‑24】王浩宇：班上很多人心里清楚发生了什么，但是大家都害怕。有人被胁迫不许吐露半个字。</p><p>【2004‑05‑27】匿名：不要相信公开的结论。实验楼的储物间留有痕迹。</p><p><small>备注：部分文字融于底色，鼠标刷过或许能够显现。</small></p><p class="hide-text">屈服现实可以换取安宁；保存证据等待时机；公开一切将掀起巨大风波。把你选择的词发送消息通道。摩斯片段分散在学校简介页面。</p></div>
+</div>
 
-        <!-- ===== 学校简介（含正门照片） ===== -->
-        <div id="page_schoolinfo" style="display:none;">
-            <div class="old-box">
-                <h3>学校简介</h3>
-                <hr>
-                <img src="https://s41.ax1x.com/2026/08/25/pnpiDMR.jpg" alt="青树镇中心小学正门" style="border:2px inset #888;max-width:100%;margin-bottom:12px;">
-                <p>青树镇中心小学位于青树镇中心区域，始建于1992年，是一所全日制公办小学。学校占地面积约12000平方米，现有教学楼2栋、实验楼1栋、操场1个。</p>
-                <p>校内建有旧实验楼，五月下旬因校舍维修封闭，禁止学生靠近。后巷、地下储物间为危险区域。</p>
-                <p>校方对外报告校内无安全事故记录。维修记录编号：0405‑L71</p>
-                <p class="hide-text">.... .- .-. -  -.-. .- - </p>
-            </div>
-        </div>
+<!-- 破损档案碎片 -->
+<div id="page_cipher" style="display:none;">
+<div class="old-box"><h3>破损档案碎片</h3><hr><p>此处为被撕碎后残存的网页片段，来源不明，没有备注说明。</p><p>纸张原件已经遗失，仅剩下网页留存字符。</p><br><p>没有附加任何注释，系统日志多处被抹除。</p><p class="hide-text">论坛内残存一条被删除的帖子编号 #71。抉择的词语，后期在卷宗页面提交。凯撒解密：FDPHPDOH左移3位，得到came male。</p></div>
+</div>
 
-        <!-- ===== 全校班级花名册 ===== -->
-        <div id="page_class61" style="display:none;">
-            <div class="old-box">
-                <h3>全校班级花名册</h3>
-                <hr>
-                <p style="margin-bottom:10px;color:#666;">共14个班级，部分班级档案已损坏</p>
-                <div id="classList" style="display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;font-size:14px;">
-                    <div><span style="color:#888;">📚</span> 一年级一班</div>
-                    <div><span style="color:#888;">📚</span> 一年级二班</div>
-                    <div><span style="color:#888;">📚</span> 二年级一班</div>
-                    <div><span style="color:#888;">📚</span> 二年级二班</div>
-                    <div><span style="color:#888;">📚</span> 三年级一班</div>
-                    <div><span style="color:#888;">📚</span> 三年级二班</div>
-                    <div><span style="color:#888;">📚</span> 四年级一班</div>
-                    <div><span style="color:#888;">📚</span> 四年级二班</div>
-                    <div><span style="color:#888;">📚</span> 五年级一班</div>
-                    <div><span style="color:#888;">📚</span> 五年级二班</div>
-                    <div style="color:#0000EE;text-decoration:underline;cursor:pointer;font-weight:bold;" onclick="showClassDetail('61')"><span style="color:#888;">📖</span> 六年级一班</div>
-                    <div><span style="color:#888;">📚</span> 六年级二班</div>
-                    <div><span style="color:#888;">📚</span> 六年级三班</div>
-                    <div><span style="color:#888;">📚</span> 六年级四班</div>
-                </div>
-                <div id="classDetailArea" style="margin-top:16px;display:none;border-top:1px dashed #ccc;padding-top:14px;">
-                    <div id="classDetailContent"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== 教职工名单 ===== -->
-        <div id="page_teacher" style="display:none;">
-            <div class="old-box">
-                <h3>教职工名单 2004</h3>
-                <hr>
-                <p>庄军 —— 六年一班班主任，掌管班级各项班费采购经费。</p>
-                <p>李梅 —— 语文教师</p>
-                <p>张卫国 —— 数学教师</p>
-                <p>刘芳 —— 音乐教师</p>
-                <p>陈建军 —— 科学教师</p>
-                <p>王师傅 —— 校园维修工，5‑16深夜留在校内做检修。</p>
-                <p class="hide-text">维修工记录被加密保护，口令为事件发生的月份日期。当晚有人听见实验楼内传出争执声响。</p>
-            </div>
-        </div>
-
-        <!-- ===== 失踪事件通报 ===== -->
-        <div id="page_missing" style="display:none;">
-            <div class="old-box">
-                <h3>失踪事件通报</h3>
-                <hr>
-                <p>姓名：范明磊</p>
-                <p>离校时间：2004‑05‑16 17:40</p>
-                <p>最后目击地点：旧实验楼后门。</p>
-                <p>校方初步判断：私自离校出走。</p>
-                <p>部分学生私下提及，事发当日，该生拿到了一份不该看见的纸质材料。</p>
-                <p class="hide-text">那份文档，和班级账目有关。实验楼地下储物间，遗留范明磊的书包碎片与账本残页。</p>
-            </div>
-        </div>
-
-        <!-- ===== 旧留言板 ===== -->
-        <div id="page_message" style="display:none;">
-            <div class="old-box">
-                <h3>旧留言板缓存</h3>
-                <hr>
-                <p>【2004‑05‑17】匿名：那天���看见了不该看见的，��火气很大。</p>
-                <p>【2004‑05‑18】林小雨：��最近总是躲躲藏藏，不敢抬头看人。</p>
-                <p>【2004‑05‑20】管理员：禁止传播不实传闻，相关留言已清除。</p>
-                <p>【2004‑05‑22】匿名：我不能站出来，后果我承担不起。只能把碎片留在网站各处。</p>
-                <p>【2004‑05‑24】王浩宇：班上很多人心里清楚发生了什么，但是大家都害怕。有人被胁迫不许吐露半个字。</p>
-                <p>【2004‑05‑27】匿名：不要相信公开的结论。实验楼的储物间留有痕迹。</p>
-                <p><small>备注：部分��融于��，����或许能够��。</small></p>
-                <p class="hide-text">屈服��������������</p>
-            </div>
-        </div>
-
-        <!-- ===== 破损档案碎片 ===== -->
-        <div id="page_cipher" style="display:none;">
-            <div class="old-box">
-                <h3>破损档案碎片</h3>
-                <hr>
-                <p>此处为被撕碎后残存的网页片段，来源不明，没有备注说明。</p>
-                <p>纸张原件已经遗失，仅剩下网页留存字符。</p>
-                <br>
-                <p>没有附加任何注释，系统日志多处被抹除。</p>
-                <p class="hide-text">论坛内残存一条被████的帖子██</p>
-            </div>
-        </div>
-
-        <!-- ===== 维修工人日志 ===== -->
-        <div id="page_repairlog" style="display:none;">
-            <div class="old-box">
-                <h3>【加密】维修工人日志</h3>
-                <hr>
-                <div id="repairLogLockArea">
-                    <p>本页面已加密保护，请输入4位数字访问口令解锁文档。</p>
-                    <input class="old-input" id="repairPwdInput" placeholder="4位数字口令">
-                    <br><br>
-                    <button class="old-btn" onclick="checkRepairPassword()">确认解锁</button>
-                    <p id="repairPwdErr" class="err-text" style="display:none;">口令错误</p>
-                </div>
-                <div id="repairLogUnlockedArea" style="display:none;">
-                    <img src="https://s41.ax1x.com/2026/08/25/pnpPn39.png" alt="维修工手写笔记扫描件" style="border:2px inset #aaa;max-width:100%;">
-                    <hr>
-                    <pre style="white-space:pre-line;font-family:SimSun;font-size:14px;">
+<!-- 维修工人日志 -->
+<div id="page_repairlog" style="display:none;">
+<div class="old-box"><h3>【加密】维修工人日志</h3><hr>
+<div id="repairLogLockArea"><p>本页面已加密保护，请输入4位数字访问口令解锁文档。</p><input class="old-input" id="repairPwdInput" placeholder="4位数字口令" style="max-width:100%;"><br><br><button class="old-btn" onclick="checkRepairPassword()">确认解锁</button><p id="repairPwdErr" class="err-text" style="display:none;">口令错误，请在网页寻找线索</p></div>
+<div id="repairLogUnlockedArea" style="display:none;"><img src="https://s41.ax1x.com/2026/08/25/pnpPn39.png" alt="维修工手写笔记扫描件" style="border:2px inset #aaa;max-width:100%;"><hr><pre style="white-space:pre-line;font-family:SimSun;font-size:clamp(13px,1.6vw,14px);">====维修工人日志解锁成功====
 2004‑05‑16 19:20
 实验楼内部传出争吵声。我不敢上前。
 看见班主任庄军很晚才离开实验楼后门。
 储物间铁门留有撞击划痕。
-我偷偷记下这一切，但我没有勇气报警。
-                    </pre>
-                </div>
-            </div>
-        </div>
+我偷偷记下这一切，但我没有勇气报警。</pre></div>
+</div>
+</div>
 
-        <!-- ===== 联系我们 ===== -->
-        <div id="page_contact" style="display:none;">
-            <div class="old-box">
-                <h3>联系我们｜匿名消息通道</h3>
-                <hr>
-                <p>对话对象：<b>???</b></p>
-                <div id="chatLog" style="height:160px;border:1px solid #999;padding:6px;overflow:auto;background:#fff;color:#000;font-size:13px;line-height:1.6;">
-                    <div>???: 不要追问我的身份。有些真相，代价很大。</div>
-                    <div>???: 如果你能解开散落在网页各处的碎片，或许能获得我的信任。</div>
-                </div>
-                <br>
-                <input class="old-input" id="chatInput" type="text" placeholder="输入内容发送" style="width:280px;">
-                <button class="old-btn" onclick="sendChat()">发送</button>
-            </div>
-        </div>
+<!-- 联系我们 -->
+<div id="page_contact" style="display:none;">
+<div class="old-box"><h3>联系我们｜匿名消息通道</h3><hr><p>对话对象：<b>???</b></p>
+<div id="chatLog" style="height:160px;border:1px solid #999;padding:6px;overflow:auto;background:#fff;color:#000;font-size:clamp(13px,1.6vw,14px);line-height:1.6;">
+<div>???: 不要追问我的身份。有些真相，代价很大。</div>
+<div>???: 如果你能解开散落在网页各处的碎片，或许能获得我的信任。</div>
+</div>
+<br>
+<div style="display:flex;flex-wrap:wrap;gap:6px;">
+<input class="old-input" id="chatInput" type="text" placeholder="输入内容发送" style="max-width:100%;flex:1;">
+<button class="old-btn" onclick="sendChat()">发送</button>
+</div>
+</div>
+</div>
 
-        <!-- ===== 校内讨论板 ===== -->
-        <div id="page_forumIntro" style="display:none;">
-            <div class="old-box">
-                <h3>校内讨论板</h3>
-                <hr>
-                <p>⚠论坛入口文件已损坏，点击下方蓝色标题，进入论坛主页面。</p>
-                <p class="blue-title" onclick="showPage('forum')">>> 青树镇校园讨论板‑2004存档【点击进入】</p>
-            </div>
-        </div>
+<!-- 校内讨论板入口 -->
+<div id="page_forumIntro" style="display:none;">
+<div class="old-box"><h3>校内讨论板</h3><hr><p>⚠论坛入口文件已损坏，必须点击下方蓝色标题，才可进入论坛主页面。</p><p class="blue-title" onclick="showPage('forum')">>> 青树镇校园讨论板‑2004存档【点击进入】</p></div>
+</div>
 
-        <!-- ===== 讨论板内容 ===== -->
-        <div id="page_forum" style="display:none;">
-            <div class="old-box">
-                <h3>校园讨论板（存档副本）</h3>
-                <hr>
-                <input class="old-input" id="forumSearch" placeholder="帖子关键词搜索">
-                <button class="old-btn" onclick="renderForum()">搜索</button>
-                <div id="forumResult"></div>
+<!-- 讨论板 -->
+<div id="page_forum" style="display:none;">
+<div class="old-box"><h3>校园讨论板（存档副本）</h3><hr>
+<div style="display:flex;flex-wrap:wrap;gap:6px;">
+<input class="old-input" id="forumSearch" placeholder="帖子关键词搜索" style="max-width:100%;flex:1;">
+<button class="old-btn" onclick="renderForum()">搜索</button>
+</div>
+<div id="forumResult"></div>
+<div class="forum-thread"><div class="floor-item"><span class="sticky-tag">【置顶】</span><span class="floor-title">学校论坛管理公告，禁止传播不实谣言</span></div><div class="floor-item"><b>◆楼主｜管理员</b><p>各位同学，请勿发布没有依据的传闻，违规帖子会直接删除。</p></div></div>
+<div class="forum-thread"><div class="floor-item"><span class="hot-tag">【🔥热点】</span><span class="floor-title">旧实验楼晚上为什么还有灯光？</span></div><div class="floor-item"><b>◆楼主｜晚风</b><p>最近好多次晚自习放学，看见实验楼里面亮灯，学校说是维修工人在干活。</p></div><div class="floor-item"><b>◆1楼｜过客03</b><p>我也见过，但是从来没有看见工人从里面出来。</p></div><div class="floor-item"><b>◆2楼｜匿名用户</b><p>5月16号那天晚上，我听见楼里面有争吵的声音。</p></div></div>
+<div class="forum-thread"><div class="floor-item"><span class="hot-tag">【🔥热点】</span><span class="floor-title">范明磊到底去哪里了？</span></div><div class="floor-item"><b>◆楼主｜星月</b><p>已经好多天没有见到他来上学，学校说私自离家出走。</p></div><div class="floor-item"><b>◆1楼｜同学A</b><p>不要乱猜测，老师叫我们不要私下讨论这件事情。</p></div><div class="floor-item"><b>◆2楼｜匿名</b><p>顾千最近状态很差，上课经常发呆，问他什么都不肯说。</p></div></div>
+<div class="forum-thread"><div class="floor-item"><span>【已删索引#71】</span><span class="floor-title">该主题已被管理员移除，仅保留索引</span></div><div class="floor-item"><b>◆楼主｜（用户已删除）</b><p class="hide-text">5‑16。储物间。三份心智抉择。</p><p>内容已清除。数据库仅残留少量无法解析的字节碎片。</p></div></div>
+<div class="forum-thread"><div class="floor-item"><span>【普通】</span><span class="floor-title">关于顾千最近状态闲聊</span></div><div class="floor-item"><b>◆楼主｜同班同学</b><p>顾千最近下课总是一个人坐着，很少说话。</p></div><div class="floor-item"><b>◆1楼｜路人</b><p>好像自从5月中旬之后就变成这个样子。</p></div></div>
+<div class="forum-thread"><div class="floor-item"><span>【碎片帖】</span><span class="floor-title">零碎的数字笔记（回复被全部清空）</span></div><div class="floor-item"><b>◆楼主｜匿名</b><p>#71，0516，部分数字被涂黑。</p></div></div>
+</div>
+</div>
 
-                <div class="forum-thread">
-                    <div class="floor-item">
-                        <span class="sticky-tag">【置顶】</span>
-                        <span class="floor-title">学校论坛管理公告，禁止传播不实谣言</span>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆楼主｜管理员</b>
-                        <p>各位同学，请勿发布没有依据的传闻，违规帖子会直接删除。</p>
-                    </div>
-                </div>
+<!-- 旧卷宗（隐藏） -->
+<div id="page_ending" class="ending-hide" style="display:none;">
+<div class="old-box"><h3>事件最终卷宗</h3><hr><div id="endingContent"><p>完整事件还原：</p><p>2004‑05‑16，学生范明磊捡到庄军挪用班费的账本复印件，打算上交校长。庄军得知后，将范明磊拦截在旧实验楼储物间。争执酿成悲剧。</p><p>顾千躲在角落目睹全部经过。王浩宇在楼梯转角窥见部分画面，事后遭受胁迫封口。维修工深夜听见楼内异响，却不敢直接介入。</p><p>校方销毁账本原件，删除论坛帖子，对外宣告学生私自出走。顾千手握残存物证，陷入三种选择。</p><p>读完卷宗全部内容之后，你必须做出最终抉择。</p><p class="hide-text">刷新页面，全部记忆归零，可以开启另一条时间线。</p></div></div>
+</div>
 
-                <div class="forum-thread">
-                    <div class="floor-item">
-                        <span class="hot-tag">【🔥热点】</span>
-                        <span class="floor-title">旧实验楼晚上为什么还有灯光？</span>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆楼主｜晚风</b>
-                        <p>最近好多次晚自习放学，看见实验楼里面亮灯，学校说是维修工人在干活。</p>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆1楼｜过客03</b>
-                        <p>我也见过，但是从来没有看见工人从里面出来。</p>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆2楼｜匿名用户</b>
-                        <p>5月16号那天晚上，我听见楼里面有争吵的声音。</p>
-                    </div>
-                </div>
-
-                <div class="forum-thread">
-                    <div class="floor-item">
-                        <span class="hot-tag">【🔥热点】</span>
-                        <span class="floor-title">范明磊到底去哪里了？</span>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆楼主｜星月</b>
-                        <p>已经好多天没有见到他来上学，学校说私自离家出走。</p>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆1楼｜同学A</b>
-                        <p>不要乱猜测，老师叫我们不要私下讨论这件事情。</p>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆2楼｜匿名</b>
-                        <p>顾千最近状态很差，上课经常发呆，问他什么都不肯说。</p>
-                    </div>
-                </div>
-
-                <div class="forum-thread">
-                    <div class="floor-item">
-                        <span>【已删索引#71】</span>
-                        <span class="floor-title">该主题已被管理员移除，仅保留索引</span>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆楼主｜（用户已删除）</b>
-                        <p class="hide-text">5‑16。储物间</p>
-                        <p>内容已清除。数据库仅残留少量无法解析的字节碎片。</p>
-                    </div>
-                </div>
-
-                <div class="forum-thread">
-                    <div class="floor-item">
-                        <span>【普通】</span>
-                        <span class="floor-title">关于██最近状态闲聊</span>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆楼主｜同班同学</b>
-                        <p>██最近下课总是一个人坐着，很少说话。</p>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆1楼｜路人</b>
-                        <p>好像自从5月中旬之后就变成这个样子。</p>
-                    </div>
-                </div>
-
-                <div class="forum-thread">
-                    <div class="floor-item">
-                        <span>【碎片帖】</span>
-                        <span class="floor-title">（回复被全部清空）</span>
-                    </div>
-                    <div class="floor-item">
-                        <b>◆楼主｜匿名</b>
-                        <p>#71，05██</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== 旧卷宗页面（隐藏，已被黑屏替代） ===== -->
-        <div id="page_ending" class="ending-hide" style="display:none;">
-            <div class="old-box">
-                <h3>事件最终卷宗</h3>
-                <hr>
-                <div id="endingContent">
-                    <p>完整事件还原：</p>
-                    <p>2004‑05‑16，学生范明磊捡到庄军挪用班费的账本复印件，打算上交校长。庄军得知后，将范明磊拦截在旧实验楼储物间。争执酿成悲剧。</p>
-                    <p>顾千躲在角落目睹全部经过。王浩宇在楼梯转角窥见部分画面，事后遭受胁迫封口。维修工深夜听见楼内异响，却不敢直接介入。</p>
-                    <p>校方销毁账本原件，删除论坛帖子，对外宣告学生私自出走。顾千手握残存物证，陷入三种选择。</p>
-                    <p>读完卷宗全部内容之后，你必须做出最终抉择。</p>
-                    <p class="hide-text">刷新页面，全部记忆归零，可以开启另一条时间线。</p>
-                </div>
-            </div>
-        </div>
-
-    </td>
+</td>
 </tr>
-<tr>
-    <td colspan="2" class="foot">
-        <hr>
-        青树镇中心小学 ©2004 All Rights Reserved<br>
-        IIS5.0 Web Server · 存档副本
-    </td>
-</tr>
+<tr><td colspan="2" class="foot"><hr>青树镇中心小学 ©2004 All Rights Reserved<br>IIS5.0 Web Server · 存档副本</td></tr>
 </table>
 
-<!-- ============================================================ -->
-<!-- ===== JavaScript ===== -->
 <script>
 // ============================================================
 // 全局变量
 // ============================================================
-var pagesIdList = ["index","schoolinfo","class61","teacher","missing","message","cipher","repairlog","contact","forumIntro","forum"];
-var archiveUnlocked = false;
-var unlockStep = 0;
-var chatLog = document.getElementById("chatLog");
-var endingNavBlock = document.getElementById("endingNavBlock");
-var blackScreenRunning = false;
+var pagesIdList=["index","schoolinfo","class61","teacher","missing","message","cipher","repairlog","contact","forumIntro","forum"];
+var archiveUnlocked=false;
+var unlockStep=0;
+var chatLog=document.getElementById("chatLog");
+var endingNavBlock=document.getElementById("endingNavBlock");
+var blackScreenRunning=false;
+var classDetailVisible=false;
 
 // ============================================================
-// 碎片收集状态（localStorage 跨页面共享）
+// 碎片收集（localStorage跨页面共享）
 // ============================================================
-function getFragments() {
-    try {
-        var data = localStorage.getItem("fragments_collected");
-        if (data) return JSON.parse(data);
-    } catch(e) {}
-    return [];
-}
-function getFragmentProgress() {
-    var frags = getFragments();
-    var target = ['i','n','v','i','s','i','b','l','e','t'];
-    var collected = 0;
-    for (var i = 0; i < target.length; i++) {
-        if (frags.indexOf(target[i]) !== -1) collected++;
-    }
-    return collected + "/" + target.length;
-}
+function getFragments(){try{var data=localStorage.getItem("fragments_collected");if(data)return JSON.parse(data);}catch(e){}return [];}
+function getFragmentProgress(){var frags=getFragments();var target=['i','n','v','i','s','i','b','l','e','t'];var c=0;for(var i=0;i<target.length;i++){if(frags.indexOf(target[i])!==-1)c++;}return c+"/"+target.length;}
 
 // ============================================================
-// 班级花名册 - 显示六一班详情
+// 班级花名册
 // ============================================================
-var classDetailVisible = false;
-
-function showClassDetail(className) {
-    if (className === '61') {
-        var area = document.getElementById('classDetailArea');
-        var content = document.getElementById('classDetailContent');
-        if (classDetailVisible) {
-            area.style.display = 'none';
-            classDetailVisible = false;
-            return;
-        }
-        content.innerHTML = `
-            <p><b>六年一班班级档案</b></p>
-            <hr style="margin:6px 0 10px 0;">
-            <p>班主任：庄军</p>
-            <p>在册总人数：<b>45人</b></p>
-            <p>重点登记学生记录：</p>
-            <p>1. 范明磊，课余常游走废弃校舍区域。</p>
-            <p>2. 顾千，性格内向，多数时间跟随范明磊活动。5‑16跟随范明磊前往实验楼。</p>
-            <p>3. 林小雨，5月16日傍晚目击两名同学走向实验楼方向。</p>
-            <p>4. 王浩宇，事发当晚曾被班主任单独留下谈话。</p>
-            <br>
-            <p>其余在册学生：孙悦，赵阳，何佳琪，吴浩，郑子轩，周思雨，马欣，胡博文，徐磊，高梦瑶，曹宇，冯雨桐，袁航，邓佳，韩冰，吕梦琪，姚俊，方思远，石佳宁，谭哲，廖一凡，邹雨桐，熊伟，金梦，陆子豪，郝雨，龚俊，段雅，盛凯，焦梦瑶，温鹏，施雨菲，葛俊熙，安可，齐佳乐，莫凡，宁子萱，陈雨萌，黄烁，宋佳。</p>
-            <p><i>完整纸质花名册存放档案室，网页仅摘录部分条目。</i></p>
-            <p class="hide-text">FDPHPDOH</p>
-            <p class="hide-text">hint: shift‑3；#71。</p>
-        `;
-        area.style.display = 'block';
-        classDetailVisible = true;
-        var items = document.querySelectorAll('#classList > div');
-        items.forEach(function(el) {
-            el.style.fontWeight = 'normal';
-            el.style.color = '#000';
-        });
-        var targetEl = document.querySelector('#classList > div:has(span:contains("六年级一班"))');
-        for (var i = 0; i < items.length; i++) {
-            if (items[i].textContent.indexOf('六年级一班') !== -1) {
-                items[i].style.fontWeight = 'bold';
-                items[i].style.color = '#0000EE';
-            }
-        }
-    } else {
-        document.getElementById('classroomPopup').style.display = 'block';
-    }
+function showClassDetail(className){
+if(className==='61'){
+var area=document.getElementById('classDetailArea');
+var content=document.getElementById('classDetailContent');
+if(classDetailVisible){area.style.display='none';classDetailVisible=false;return;}
+content.innerHTML='<p><b>六年一班班级档案</b></p><hr style="margin:6px 0 10px 0;"><p>班主任：庄军</p><p>在册总人数：<b>45人</b></p><p>重点登记学生记录：</p><p>1. 范明磊，课余常游走废弃校舍区域。</p><p>2. 顾千，性格内向，多数时间跟随范明磊活动。5‑16跟随范明磊前往实验楼。</p><p>3. 林小雨，5月16日傍晚目击两名同学走向实验楼方向。</p><p>4. 王浩宇，事发当晚曾被班主任单独留下谈话。</p><br><p>其余在册学生：孙悦，赵阳，何佳琪，吴浩，郑子轩，周思雨，马欣，胡博文，徐磊，高梦瑶，曹宇，冯雨桐，袁航，邓佳，韩冰，吕梦琪，姚俊，方思远，石佳宁，谭哲，廖一凡，邹雨桐，熊伟，金梦，陆子豪，郝雨，龚俊，段雅，盛凯，焦梦瑶，温鹏，施雨菲，葛俊熙，安可，齐佳乐，莫凡，宁子萱，陈雨萌，黄烁，宋佳。</p><p><i>完整纸质花名册存放档案室，网页仅摘录部分条目。</i></p><p class="hide-text">FDPHPDOH</p><p class="hide-text">hint: shift‑3；#71帖子索引数字，结合摩斯片段，拼凑次要线索。</p>';
+area.style.display='block';classDetailVisible=true;
+var items=document.querySelectorAll('#classList > div');
+items.forEach(function(el){el.style.fontWeight='normal';el.style.color='#000';});
+for(var i=0;i<items.length;i++){if(items[i].textContent.indexOf('六年级一班')!==-1){items[i].style.fontWeight='bold';items[i].style.color='#00E';}}
+}else{document.getElementById('classroomPopup').style.display='flex';}
 }
-
-function closeClassroomPopup() {
-    document.getElementById('classroomPopup').style.display = 'none';
-}
+function closeClassroomPopup(){document.getElementById('classroomPopup').style.display='none';}
 
 // ============================================================
 // 论坛跳转
 // ============================================================
-function openForumKeyPopup(){
-    document.getElementById("forumKeyPopup").style.display = "block";
-    document.getElementById("forumKeyInput").value = "";
-    document.getElementById("forumKeyErr").innerText = "";
-    document.getElementById("forumKeyInput").focus();
-}
-function closeForumKeyPopup(){
-    document.getElementById("forumKeyPopup").style.display = "none";
-    document.getElementById("forumKeyErr").innerText = "";
-}
-function checkForumKey(){
-    var key = document.getElementById("forumKeyInput").value.trim().toLowerCase();
-    if(key === "memorialfile"){
-        closeForumKeyPopup();
-        window.location.href = "https://mc-zian.github.io/argqingshu/";
-    }else{
-        document.getElementById("forumKeyErr").innerText = "❌ 密钥错误，请重试。";
-        document.getElementById("forumKeyInput").value = "";
-        document.getElementById("forumKeyInput").focus();
-    }
-}
+function openForumKeyPopup(){document.getElementById("forumKeyPopup").style.display="flex";document.getElementById("forumKeyInput").value="";document.getElementById("forumKeyErr").innerText="";document.getElementById("forumKeyInput").focus();}
+function closeForumKeyPopup(){document.getElementById("forumKeyPopup").style.display="none";document.getElementById("forumKeyErr").innerText="";}
+function checkForumKey(){var key=document.getElementById("forumKeyInput").value.trim().toLowerCase();if(key==="memorialfile"){closeForumKeyPopup();window.location.href="https://mc-zian.github.io/argqingshu/";}else{document.getElementById("forumKeyErr").innerText="❌ 密钥错误，请重试。";document.getElementById("forumKeyInput").value="";document.getElementById("forumKeyInput").focus();}}
 
 // ============================================================
-// 卷宗密钥弹窗
+// 卷宗密钥
 // ============================================================
-function openVolumeKeyPopup(){
-    document.getElementById("volumeKeyPopup").style.display = "block";
-    document.getElementById("volumeKeyInput").value = "";
-    document.getElementById("volumeKeyErr").innerText = "";
-    document.getElementById("volumeKeyInput").focus();
-}
-function closeVolumeKeyPopup(){
-    document.getElementById("volumeKeyPopup").style.display = "none";
-    document.getElementById("volumeKeyErr").innerText = "";
-}
-function checkVolumeKey(){
-    var key = document.getElementById("volumeKeyInput").value.trim().toLowerCase();
-    if(key === "invisiblet"){
-        closeVolumeKeyPopup();
-        startBlackScreen();
-    }else{
-        document.getElementById("volumeKeyErr").innerText = "❌ 密钥错误。";
-        document.getElementById("volumeKeyInput").value = "";
-        document.getElementById("volumeKeyInput").focus();
-    }
-}
+function openVolumeKeyPopup(){document.getElementById("volumeKeyPopup").style.display="flex";document.getElementById("volumeKeyInput").value="";document.getElementById("volumeKeyErr").innerText="";document.getElementById("volumeKeyInput").focus();}
+function closeVolumeKeyPopup(){document.getElementById("volumeKeyPopup").style.display="none";document.getElementById("volumeKeyErr").innerText="";}
+function checkVolumeKey(){var key=document.getElementById("volumeKeyInput").value.trim().toLowerCase();if(key==="invisiblet"){closeVolumeKeyPopup();startBlackScreen();}else{document.getElementById("volumeKeyErr").innerText="❌ 密钥错误。";document.getElementById("volumeKeyInput").value="";document.getElementById("volumeKeyInput").focus();}}
 
 // ============================================================
 // 旧卷宗密钥（保留兼容）
 // ============================================================
-function openKeyPopup(){
-    document.getElementById("keyPopup").style.display = "block";
-}
-function closeKeyPopup(){
-    document.getElementById("keyPopup").style.display = "none";
-}
-function checkArchiveKey(){
-    var v = document.getElementById("keyInput").value.trim().toLowerCase();
-    if(v === "memorialfile"){
-        closeKeyPopup();
-        archiveUnlocked = true;
-        endingNavBlock.style.display = "block";
-        document.getElementById("marqueeText").innerText="【档案解锁】卷宗权限已开放｜部分真相得以重见天日｜但仍有大量碎片永久遗失";
-    }else{
-        alert("密钥错误，拒绝访问");
-    }
-}
+function openKeyPopup(){document.getElementById("keyPopup").style.display="flex";}
+function closeKeyPopup(){document.getElementById("keyPopup").style.display="none";}
+function checkArchiveKey(){var v=document.getElementById("keyInput").value.trim().toLowerCase();if(v==="memorialfile"){closeKeyPopup();archiveUnlocked=true;endingNavBlock.style.display="block";document.getElementById("marqueeText").innerText="【档案解锁】卷宗权限已开放｜部分真相得以重见天日｜但仍有大量碎片永久遗失";}else{alert("密钥错误，拒绝访问");}}
 
 // ============================================================
 // 页面导航
 // ============================================================
 function showPage(id){
-    pagesIdList.forEach(function(pid){
-        var el = document.getElementById("page_"+pid);
-        if(el) el.style.display = "none";
-    });
-    var target = document.getElementById("page_"+id);
-    if(target) target.style.display = "block";
-
-    if(archiveUnlocked){
-        endingNavBlock.style.display = "block";
-    }else{
-        endingNavBlock.style.display = "none";
-    }
-
-    if(id === "repairlog"){
-        document.getElementById("repairLogLockArea").style.display = "block";
-        document.getElementById("repairLogUnlockedArea").style.display = "none";
-        document.getElementById("repairPwdErr").style.display = "none";
-        document.getElementById("repairPwdInput").value = "";
-    }
-    if(id === "class61") {
-        document.getElementById('classDetailArea').style.display = 'none';
-        classDetailVisible = false;
-        var items = document.querySelectorAll('#classList > div');
-        items.forEach(function(el) {
-            el.style.fontWeight = 'normal';
-            el.style.color = '#000';
-        });
-    }
+pagesIdList.forEach(function(pid){var el=document.getElementById("page_"+pid);if(el)el.style.display="none";});
+var target=document.getElementById("page_"+id);if(target)target.style.display="block";
+if(archiveUnlocked){endingNavBlock.style.display="block";}else{endingNavBlock.style.display="none";}
+if(id==="repairlog"){document.getElementById("repairLogLockArea").style.display="block";document.getElementById("repairLogUnlockedArea").style.display="none";document.getElementById("repairPwdErr").style.display="none";document.getElementById("repairPwdInput").value="";}
+if(id==="class61"){document.getElementById('classDetailArea').style.display='none';classDetailVisible=false;var items=document.querySelectorAll('#classList > div');items.forEach(function(el){el.style.fontWeight='normal';el.style.color='#000';});}
 }
-
-function checkRepairPassword(){
-    var pw = document.getElementById("repairPwdInput").value.trim();
-    if(pw === "0516"){
-        document.getElementById("repairLogLockArea").style.display = "none";
-        document.getElementById("repairLogUnlockedArea").style.display = "block";
-    }else{
-        document.getElementById("repairPwdErr").style.display = "block";
-    }
-}
+function checkRepairPassword(){var pw=document.getElementById("repairPwdInput").value.trim();if(pw==="0516"){document.getElementById("repairLogLockArea").style.display="none";document.getElementById("repairLogUnlockedArea").style.display="block";}else{document.getElementById("repairPwdErr").style.display="block";}}
 
 // ============================================================
-// 联系我们 - 聊天系统 (1.5秒间隔)
+// 聊天系统
 // ============================================================
-function openModernEnd(title,subtext){
-    var page = document.getElementById("modernEndPage");
-    document.getElementById("endMainTitle").innerText = title;
-    document.getElementById("endSubTitle").innerText = subtext;
-    page.style.display = "flex";
-    setTimeout(function(){
-        page.classList.add("show");
-    },10);
-}
-function closeModernEnd(){
-    var page = document.getElementById("modernEndPage");
-    page.classList.remove("show");
-    setTimeout(function(){
-        page.style.display = "none";
-    },900);
-}
-
-function delayAppendMsg(text, delay){
-    setTimeout(function(){
-        appendMsg(text);
-    },delay);
-}
-
-function safeHtml(text){
-    return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
+function openModernEnd(title,subtext){var page=document.getElementById("modernEndPage");document.getElementById("endMainTitle").innerText=title;document.getElementById("endSubTitle").innerText=subtext;page.style.display="flex";setTimeout(function(){page.classList.add("show");},10);}
+function closeModernEnd(){var page=document.getElementById("modernEndPage");page.classList.remove("show");setTimeout(function(){page.style.display="none";},900);}
+function delayAppendMsg(text,delay){setTimeout(function(){appendMsg(text);},delay);}
+function safeHtml(text){return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function sendChat(){
-    var inputVal = document.getElementById("chatInput").value.trim();
-    document.getElementById("chatInput").value = "";
-    if(!inputVal) return;
-    appendMsg("你：" + safeHtml(inputVal));
-    var lowerInput = inputVal.trim().toLowerCase();
-
-    if(unlockStep === 0 && lowerInput === "came male"){
-        unlockStep = 1;
-        delayAppendMsg("???: ……你竟然把散落碎片拼出来了。", 1500);
-        delayAppendMsg("顾千: 我是顾千。那天我就在现场。", 3000);
-        delayAppendMsg("顾千: 庄军把范明磊扣在旧实验楼里面，我躲在角落不敢出声。", 4500);
-        delayAppendMsg("顾千: 这么久，我一直活在愧疚里。", 6000);
-        delayAppendMsg("顾千: 但我还不能完全信任你。实验楼墙壁上，滴答声留下了第二个暗号。", 7500);
-        delayAppendMsg("顾千: 解开摩斯碎片，把答案发给我。", 9000);
-    }
-    else if(unlockStep === 1 && lowerInput === "hart cat"){
-        unlockStep = 2;
-        delayAppendMsg("顾千: 太好了。你听懂了墙壁上滴答的声音。", 1500);
-        delayAppendMsg("顾千: 现在我完全信任你。", 3000);
-        delayAppendMsg("顾千: 通往论坛的钥匙是：memorialfile。", 4500);
-        delayAppendMsg("顾千: 拿着这个密钥去导航栏点击'青树镇本地论坛'进入。", 6000);
-        delayAppendMsg("顾千: 另外，真正的卷宗需要另一把钥匙，它散落在论坛的各个角落。", 7500);
-    }
-    else if(unlockStep === 2 && lowerInput === "memorialfile"){
-        delayAppendMsg("顾千: 你已经知道论坛密钥了。去导航栏使用它吧。", 1500);
-        delayAppendMsg("顾千: 记住，卷宗需要另一把钥匙……", 3000);
-    }
-    else{
-        if(unlockStep === 0){
-            delayAppendMsg("???: 我没有看懂。试着把网页里所有被隐藏的文字找出来。", 1500);
-            delayAppendMsg("???: 凯撒密码、摩斯碎片、加密维修日志都埋藏着线索。", 3000);
-        }else if(unlockStep === 1){
-            delayAppendMsg("???: 摩斯碎片藏在学校██页面", 1500);
-        }else{
-            delayAppendMsg("顾千: 你已经拿到了论坛密钥。去导航栏输入 memorialfile。", 1500);
-        }
-    }
+var inputVal=document.getElementById("chatInput").value.trim();document.getElementById("chatInput").value="";if(!inputVal)return;appendMsg("你："+safeHtml(inputVal));var lowerInput=inputVal.trim().toLowerCase();
+if(unlockStep===0 && lowerInput==="came male"){unlockStep=1;delayAppendMsg("???: ……你竟然把散落碎片拼出来了。",1500);delayAppendMsg("???: 我是顾千。那天我就在现场。",3000);delayAppendMsg("???: 庄军把范明磊扣在旧实验楼里面，我躲在角落不敢出声。",4500);delayAppendMsg("???: 这么久，我一直活在愧疚里。",6000);delayAppendMsg("???: 但我还不能完全信任你。实验楼墙壁上，滴答声留下了第二个暗号。",7500);delayAppendMsg("???: 解开摩斯碎片，把答案发给我。",9000);}
+else if(unlockStep===1 && lowerInput==="hart cat"){unlockStep=2;delayAppendMsg("???: 太好了。你听懂了墙壁上滴答的声音。",1500);delayAppendMsg("???: 现在我完全信任你。",3000);delayAppendMsg("???: 通往论坛的钥匙是：memorialfile。",4500);delayAppendMsg("???: 拿着这个密钥去导航栏点击'青树镇本地论坛'进入。",6000);delayAppendMsg("???: 另外，真正的卷宗需要另一把钥匙，它散落在论坛的各个角落。",7500);}
+else if(unlockStep===2 && lowerInput==="memorialfile"){delayAppendMsg("???: 你已经知道论坛密钥了。去导航栏使用它吧。",1500);delayAppendMsg("???: 记住，卷宗需要另一把钥匙……",3000);}
+else{if(unlockStep===0){delayAppendMsg("???: 我没有看懂。试着把网页里所有被隐藏的文字找出来。",1500);delayAppendMsg("???: 凯撒密码、摩斯碎片、加密维修日志都埋藏着线索。",3000);}else if(unlockStep===1){delayAppendMsg("???: 摩斯碎片藏在学校简介页面，答案由两个英文单词组成。",1500);}else{delayAppendMsg("???: 你已经拿到了论坛密钥。去导航栏输入 memorialfile。",1500);}}
 }
-
-function appendMsg(text){
-    chatLog.innerHTML += "<div>" + text + "</div>";
-    chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-document.getElementById('chatInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        sendChat();
-    }
-});
+function appendMsg(text){chatLog.innerHTML+="<div>"+text+"</div>";chatLog.scrollTop=chatLog.scrollHeight;}
+document.getElementById('chatInput').addEventListener('keydown',function(e){if(e.key==='Enter'){sendChat();}});
 
 // ============================================================
-// 校内讨论板搜索
+// 讨论板搜索
 // ============================================================
-var forbiddenKeywords = ["真相","结局","凶手","证据","警察","账本","庄军","范明磊"];
-var randomWarnings = [
-    "该主题已被管理员删除。",
-    "你没有权限访问这些内容。",
-    "请不要搜索敏感关键词。",
-    "记录已被清除。",
-    "有些问题，最好不要问。"
+var forbiddenKeywords=["真相","结局","凶手","证据","警察","账本","庄军","范明磊"];
+var randomWarnings=["该主题已被管理员删除。","你没有权限访问这些内容。","请不要搜索敏感关键词。","记录已被清除。","有些问题，最好不要问。"];
+var forumPosts=[
+{kw:"实验楼",title:"旧实验楼晚上为什么还有灯光",content:"楼主｜晚风：很多同学说晚上看到实验楼有亮光，学校说是维修。<br>1楼｜过客03：我也见过，但是从来没有看见工人从里面出来。<br>2楼｜匿名用户：5月16号那天晚上，我听见楼里面有争吵的声音。<br>3楼｜路人甲：别在这里乱讲，当心账号被封。<br>4楼｜灰色影子：我绕到后窗看过，里面只有一个人的影子。"},
+{kw:"#71",title:"被删除帖子 #71",content:"楼主｜（用户已删除）：5‑16。储物间。三份心智抉择。<br>1楼｜匿名：这个帖子刚发出来半小时就没了。<br>2楼｜过客：我只刷到一眼，内容就消失了。<br>3楼｜潜水者：管理员出手速度太快了。<br>4楼｜???：有些东西不能公开。"},
+{kw:"顾千",title:"关于顾千的闲聊帖",content:"楼主｜同班同学：顾千最近下课总是一个人坐着，很少说话。<br>1楼｜路人：好像自从5月中旬之后就变成这个样子。<br>2楼｜匿名：他好像知道点什么，问他什么都摇头。<br>3楼｜旧同桌：之前他和范明磊天天黏在一起。<br>4楼｜悄悄路过：上课经常发呆，眼神很吓人。"},
+{kw:"范明磊",title:"范明磊到底去哪里了？",content:"楼主｜星月：已经好多天没有见到他来上学，学校说私自离家出走。<br>1楼｜同学A：不要乱猜测，老师叫我们不要私下讨论这件事情。<br>2楼｜匿名：顾千最近状态很差，上课经常发呆，问他什么都不肯说。<br>3楼｜隔壁班：他家里面来学校闹过，被劝回去了。<br>4楼｜匿名：出走这个说法，我一点都不信。"},
+{kw:"0516",title:"5‑16相关碎片",content:"楼主｜碎片收集者：5月16日傍晚发生了一些事。<br>1楼｜匿名：那天放学我走得很晚。<br>2楼｜过路人：我看见两个人走向实验楼方向。<br>3楼｜潜水：之后就再也没看见范明磊出来。<br>4楼｜小声发言：学校让我们不许提起那天。"},
+{kw:"账本",title:"【隐藏帖子】垃圾桶里的碎纸",content:"楼主｜拾纸人：我在实验楼后面捡到了一张被撕烂的纸，上面好像写着钱的数目。<br>1楼｜乖乖学生：别乱说，学校会查是谁发的帖子。<br>2楼｜匿名：那不是普通废纸，是各班的经费记录。<br>3楼｜观望者：班费收了那么多，从来没有公示过开销。<br>4楼｜胆小者：删掉吧，被老师看到要倒霉。"},
+{kw:"庄军",title:"【隐藏帖子】庄老师最近不对劲",content:"楼主｜六班学生：庄老师最近为什么总是一个人留在学校？<br>1楼｜知情者：听说他在补账，天天加班。<br>2楼｜匿名：别提到钱，会被单独叫去办公室谈话。<br>3楼｜往届学生：之前就有人反映账目不清。<br>4楼｜害怕的人：最近他脾气变得特别暴躁。"},
+{kw:"储物间",title:"【隐藏帖子】实验楼储物间",content:"楼主｜探险党：实验楼储物间好像被锁了很久。<br>1楼｜普通同学：里面堆的都是旧桌椅，有什么好看的。<br>2楼｜匿名：我听说有人在里面听到过奇怪的声音。<br>3楼｜翻墙路过：门锁是新换上去的，之前锁是坏的。<br>4楼｜不敢署名：地上好像有拖拽留下的痕迹。"},
+{kw:"维修工",title:"【隐藏帖子】维修工的记录",content:"楼主｜晚归学生：5月16号那天，我看见维修工很晚才离开。<br>1楼｜消息灵通：他对外说只是修水管电路。<br>2楼｜深夜路过：但实验楼的灯明明亮到半夜。<br>3楼｜匿名：他肯定听见楼里面的动静，但不敢站出来。<br>4楼｜旁观者：普通人不想惹上大麻烦。"},
+{kw:"memorialfile",title:"【系统隐藏】卷宗访问记录",content:"楼主｜系统日志：密钥记录已被清除。<br>1楼｜神秘访客：你找到了不该找到的东西。<br>2楼｜档案碎片：卷宗入口已经被重新上锁。<br>3楼｜警告：访问痕迹会被留存。<br>4楼｜留言：真相的代价非常沉重。"}
 ];
-
-var forumPosts = [
-    {kw:"实验楼",title:"旧实验楼晚上为什么还有灯光",content:"楼主｜晚风：很多同学说晚上看到实验楼有亮光，学校说是维修。<br>1楼｜过客03：我也见过，但是从来没有看见工人从里面出来。<br>2楼｜匿名用户：5月16号那天晚上，我听见楼里面有争吵的声音。<br>3楼｜路人甲：别在这里乱讲，当心账号被封。<br>4楼｜灰色影子：我绕到后窗看过，里面只有一个人的影子。"},
-    {kw:"#71",title:"被删除帖子 #71",content:"楼主｜（用户已删除）：5‑16。储物间。三份心智抉择。<br>1楼｜匿名：这个帖子刚发出来半小时就没了。<br>2楼｜过客：我只刷到一眼，内容就消失了。<br>3楼｜潜水者：管理员出手速度太快了。<br>4楼｜???：有些东西不能公开。"},
-    {kw:"顾千",title:"关于顾千的闲聊帖",content:"楼主｜同班同学：顾千最近下课总是一个人坐着，很少说话。<br>1楼｜路人：好像自从5月中旬之后就变成这个样子。<br>2楼｜匿名：他好像知道点什么，问他什么都摇头。<br>3楼｜旧同桌：之前他和范明磊天天黏在一起。<br>4楼｜悄悄路过：上课经常发呆，眼神很吓人。"},
-    {kw:"范明磊",title:"范明磊到底去哪里了？",content:"楼主｜星月：已经好多天没有见到他来上学，学校说私自离家出走。<br>1楼｜同学A：不要乱猜测，老师叫我们不要私下讨论这件事情。<br>2楼｜匿名：顾千最近状态很差，上课经常发呆，问他什么都不肯说。<br>3楼｜隔壁班：他家里面来学校闹过，被劝回去了。<br>4楼｜匿名：出走这个说法，我一点都不信。"},
-    {kw:"0516",title:"5‑16相关碎片",content:"楼主｜碎片收集者：5月16日傍晚发生了一些事。<br>1楼｜匿名：那天放学我走得很晚。<br>2楼｜过路人：我看见两个人走向实验楼方向。<br>3楼｜潜水：之后就再也没看见范明磊出来。<br>4楼｜小声发言：学校让我们不许提起那天。"},
-    {kw:"账本",title:"【隐藏帖子】垃圾桶里的碎纸",content:"楼主｜拾纸人：我在实验楼后面捡到了一张被撕烂的纸，上面好像写着钱的数目。<br>1楼｜乖乖学生：别乱说，学校会查是谁发的帖子。<br>2楼｜匿名：那不是普通废纸，是各班的经费记录。<br>3楼｜观望者：班费收了那么多，从来没有公示过开销。<br>4楼｜胆小者：删掉吧，被老师看到要倒霉。"},
-    {kw:"庄军",title:"【隐藏帖子】庄老师最近不对劲",content:"楼主｜六班学生：庄老师最近为什么总是一个人留在学校？<br>1楼｜知情者：听说他在补账，天天加班。<br>2楼｜匿名：别提到钱，会被单独叫去办公室谈话。<br>3楼｜往届学生：之前就有人反映账目不清。<br>4楼｜害怕的人：最近他脾气变得特别暴躁。"},
-    {kw:"储物间",title:"【隐藏帖子】实验楼储物间",content:"楼主｜探险党：实验楼储物间好像被锁了很久。<br>1楼｜普通同学：里面堆的都是旧桌椅，有什么好看的。<br>2楼｜匿名：我听说有人在里面听到过奇怪的声音。<br>3楼｜翻墙路过：门锁是新换上去的，之前锁是坏的。<br>4楼｜不敢署名：地上好像有拖拽留下的痕迹。"},
-    {kw:"维修工",title:"【隐藏帖子】维修工的记录",content:"楼主｜晚归学生：5月16号那天，我看见维修工很晚才离开。<br>1楼｜消息灵通：他对外说只是修水管电路。<br>2楼｜深夜路过：但实验楼的灯明明亮到半夜。<br>3楼｜匿名：他肯定听见楼里面的动静，但不敢站出来。<br>4楼｜旁观者：普通人不想惹上大麻烦。"},
-    {kw:"memorialfile",title:"【系统隐藏】卷宗访问记录",content:"楼主｜系统日志：密钥记录已被清除。<br>1楼｜神秘访客：你找到了不该找到的东西。<br>2楼｜档案碎片：卷宗入口已经被重新上锁。<br>3楼｜警告：访问痕迹会被留存。<br>4楼｜留言：真相的代价非常沉重。"}
-];
-
 function renderForum(){
-    var s = document.getElementById("forumSearch").value.trim();
-    var resDom = document.getElementById("forumResult");
-    resDom.innerHTML = "";
-
-    if(!s){
-        resDom.innerHTML = "<p>请输入关键词搜索帖子</p>";
-        return;
-    }
-
-    if(forbiddenKeywords.indexOf(s) !== -1){
-        var warn = randomWarnings[Math.floor(Math.random() * randomWarnings.length)];
-        resDom.innerHTML = "<p style=\"color:red;\">" + warn + "</p>";
-        return;
-    }
-
-    var hit = forumPosts.filter(function(p){ return p.kw.indexOf(s) !== -1; });
-    if(hit.length === 0){
-        resDom.innerHTML = "<p>没有匹配帖子</p>";
-        return;
-    }
-
-    hit.forEach(function(p){
-        resDom.innerHTML += "<div style=\"margin:6px 0;padding:8px;border:1px solid #ccc;line-height:1.6;\">" +
-            "<b>" + p.title + "</b><br>" +
-            p.content +
-            "</div>";
-    });
+var s=document.getElementById("forumSearch").value.trim();var resDom=document.getElementById("forumResult");resDom.innerHTML="";
+if(!s){resDom.innerHTML="<p>请输入关键词搜索帖子</p>";return;}
+if(forbiddenKeywords.indexOf(s)!==-1){var warn=randomWarnings[Math.floor(Math.random()*randomWarnings.length)];resDom.innerHTML="<p style=\"color:red;\">"+warn+"</p>";return;}
+var hit=forumPosts.filter(function(p){return p.kw.indexOf(s)!==-1;});if(hit.length===0){resDom.innerHTML="<p>没有匹配帖子</p>";return;}
+hit.forEach(function(p){resDom.innerHTML+="<div style=\"margin:6px 0;padding:8px;border:1px solid #ccc;line-height:1.6;\"><b>"+p.title+"</b><br>"+p.content+"</div>";});
 }
 
 // ============================================================
-// ===== 核心：黑屏卷宗 =====
+// 黑屏卷宗
 // ============================================================
-function startBlackScreen() {
-    if (blackScreenRunning) return;
-    blackScreenRunning = true;
-
-    var screen = document.getElementById("blackScreen");
-    var content = document.getElementById("blackScreenContent");
-    screen.style.display = "flex";
-    content.innerHTML = "";
-
-    var lines = [
-        { text: "你到底是谁？", delay: 500, big: true },
-        { text: "为什么要查这个案子……", delay: 2000, big: true },
-        { text: "你不该的......", delay: 500, big: true },
-    ];
-
-    for (var i = 0; i < 20; i++) {
-        lines.push({ text: "妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧", delay: 500, big: false });
-    }
-
-    var currentIndex = 0;
-
-    function showNextLine() {
-        if (currentIndex >= lines.length) {
-            setTimeout(function() {
-                document.getElementById("choiceMask").style.display = "block";
-                document.getElementById("finalChoiceInput").value = "";
-                document.getElementById("choiceErr").innerText = "";
-                document.getElementById("choiceErr").style.display = "none";
-                document.getElementById("finalChoiceInput").focus();
-            }, 1000);
-            return;
-        }
-
-        var lineData = lines[currentIndex];
-        var div = document.createElement("div");
-        div.className = "red-text";
-        if (lineData.big) {
-            div.style.fontSize = "32px";
-            div.style.fontWeight = "bold";
-        } else {
-            div.style.fontSize = "18px";
-            div.style.fontWeight = "normal";
-        }
-
-        if (currentIndex >= 3) {
-            var eyeCount = Math.floor(Math.random() * 2) + 1;
-            var eyes = "";
-            for (var e = 0; e < eyeCount; e++) {
-                eyes += " <span class=\"eye-symbol\">👁</span> ";
-            }
-            div.innerHTML = lineData.text + " " + eyes;
-            div.className = "red-text glitch-text";
-        } else {
-            div.textContent = lineData.text;
-        }
-
-        content.appendChild(div);
-
-        setTimeout(function() {
-            div.classList.add("show");
-        }, 50);
-
-        currentIndex++;
-        var nextDelay = (currentIndex < 3) ? lineData.delay : 500;
-        setTimeout(showNextLine, nextDelay);
-    }
-
-    setTimeout(showNextLine, 500);
+function startBlackScreen(){
+if(blackScreenRunning)return;blackScreenRunning=true;
+var screen=document.getElementById("blackScreen");var content=document.getElementById("blackScreenContent");screen.style.display="flex";content.innerHTML="";
+var lines=[{text:"你到底是谁？",delay:500,big:true},{text:"为什么要查这个案子……",delay:2000,big:true},{text:"你不该的......",delay:500,big:true}];
+for(var i=0;i<20;i++){lines.push({text:"妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧妥协吧",delay:500,big:false});}
+var idx=0;
+function showNext(){
+if(idx>=lines.length){setTimeout(function(){document.getElementById("choiceMask").style.display="flex";document.getElementById("finalChoiceInput").value="";document.getElementById("choiceErr").innerText="";document.getElementById("choiceErr").style.display="none";document.getElementById("finalChoiceInput").focus();},1000);return;}
+var ld=lines[idx];var div=document.createElement("div");div.className="red-text";div.style.fontSize=ld.big?"32px":"18px";div.style.fontWeight=ld.big?"bold":"normal";
+if(idx>=3){var eyeCount=Math.floor(Math.random()*2)+1;var eyes="";for(var e=0;e<eyeCount;e++){eyes+=" <span class=\"eye-symbol\">👁</span> ";}div.innerHTML=ld.text+" "+eyes;div.className="red-text glitch-text";}else{div.textContent=ld.text;}
+content.appendChild(div);setTimeout(function(){div.classList.add("show");},50);idx++;var nd=(idx<3)?ld.delay:500;setTimeout(showNext,nd);
+}
+setTimeout(showNext,500);
 }
 
 // ============================================================
 // 抉择弹窗
 // ============================================================
-function closeChoicePopup(){
-    document.getElementById("choiceMask").style.display = "none";
-}
-
+function closeChoicePopup(){document.getElementById("choiceMask").style.display="none";}
 function submitFinalChoice(){
-    var val = document.getElementById("finalChoiceInput").value.trim();
-    var errDom = document.getElementById("choiceErr");
-
-    if (val === "help") {
-        closeChoicePopup();
-        openTerminal();
-        return;
-    }
-
-    if (val !== "") {
-        closeChoicePopup();
-        document.getElementById("blackScreen").style.display = "none";
-        blackScreenRunning = false;
-        showBadEnding();
-    } else {
-        errDom.innerText = "请做出你的选择。";
-        errDom.style.display = "block";
-    }
+var val=document.getElementById("finalChoiceInput").value.trim();var errDom=document.getElementById("choiceErr");
+if(val==="help"){closeChoicePopup();openTerminal();return;}
+if(val!==""){closeChoicePopup();document.getElementById("blackScreen").style.display="none";blackScreenRunning=false;showBadEnding();}else{errDom.innerText="请做出你的选择。";errDom.style.display="block";}
 }
 
 // ============================================================
-// 终端系统
+// 终端
 // ============================================================
-function openTerminal(){
-    document.getElementById("terminalModal").style.display = "flex";
-    document.getElementById("terminalOutput").innerHTML = "> 终端已激活。输入 help 查看可用指令。";
-    document.getElementById("terminalInput").value = "";
-    document.getElementById("terminalInput").focus();
-}
-
-function closeTerminal(){
-    document.getElementById("terminalModal").style.display = "none";
-}
-
+function openTerminal(){document.getElementById("terminalModal").style.display="flex";document.getElementById("terminalOutput").innerHTML="> 终端已激活。输入 help 查看可用指令。";document.getElementById("terminalInput").value="";document.getElementById("terminalInput").focus();}
+function closeTerminal(){document.getElementById("terminalModal").style.display="none";}
 function processTerminalCommand(cmd){
-    var output = document.getElementById("terminalOutput");
-    var lower = cmd.trim().toLowerCase();
-
-    if (lower === "help") {
-        output.innerHTML += "\n> 可用指令：";
-        output.innerHTML += "\n  - trust yourself  : 相信自己的判断";
-        output.innerHTML += "\n  - surrender       : 向黑暗妥协";
-        output.innerHTML += "\n  - status          : 查看碎片进度";
-        output.innerHTML += "\n  - clear           : 清空终端";
-        output.innerHTML += "\n  - exit            : 关闭终端";
-    }
-    else if (lower === "trust yourself") {
-        output.innerHTML += "\n> 你选择了相信自己。光芒正在苏醒……";
-        closeTerminal();
-        document.getElementById("blackScreen").style.display = "none";
-        blackScreenRunning = false;
-        showPerfectEnding();
-    }
-    else if (lower === "surrender") {
-        output.innerHTML += "\n> 你选择了屈服。黑暗正在蔓延……";
-        closeTerminal();
-        document.getElementById("blackScreen").style.display = "none";
-        blackScreenRunning = false;
-        showBadEnding();
-    }
-    else if (lower === "status") {
-        var progress = getFragmentProgress();
-        output.innerHTML += "\n> 碎片收集进度：" + progress;
-        output.innerHTML += "\n> 当前碎片：" + JSON.stringify(getFragments());
-    }
-    else if (lower === "clear") {
-        output.innerHTML = "> 终端已清空。";
-    }
-    else if (lower === "exit") {
-        closeTerminal();
-    }
-    else if (lower === "") {
-    }
-    else {
-        output.innerHTML += "\n> 未知指令。输入 help 查看可用指令。";
-    }
-
-    output.scrollTop = output.scrollHeight;
+var output=document.getElementById("terminalOutput");var lower=cmd.trim().toLowerCase();
+if(lower==="help"){output.innerHTML+="\n> 可用指令：\n  - trust yourself  : 相信自己的判断\n  - surrender       : 向黑暗妥协\n  - status          : 查看碎片进度\n  - clear           : 清空终端\n  - exit            : 关闭终端";}
+else if(lower==="trust yourself"){output.innerHTML+="\n> 你选择了相信自己。光芒正在苏醒……";closeTerminal();document.getElementById("blackScreen").style.display="none";blackScreenRunning=false;showPerfectEnding();}
+else if(lower==="surrender"){output.innerHTML+="\n> 你选择了屈服。黑暗正在蔓延……";closeTerminal();document.getElementById("blackScreen").style.display="none";blackScreenRunning=false;showBadEnding();}
+else if(lower==="status"){var progress=getFragmentProgress();output.innerHTML+="\n> 碎片收集进度："+progress+"\n> 当前碎片："+JSON.stringify(getFragments());}
+else if(lower==="clear"){output.innerHTML="> 终端已清空。";}
+else if(lower==="exit"){closeTerminal();}
+else if(lower===""){}
+else{output.innerHTML+="\n> 未知指令。输入 help 查看可用指令。";}
+output.scrollTop=output.scrollHeight;
 }
-
-document.getElementById('terminalInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        var cmd = this.value;
-        var output = document.getElementById("terminalOutput");
-        output.innerHTML += "\n> " + cmd;
-        processTerminalCommand(cmd);
-        this.value = "";
-        output.scrollTop = output.scrollHeight;
-    }
-});
+document.getElementById('terminalInput').addEventListener('keydown',function(e){if(e.key==='Enter'){var cmd=this.value;var output=document.getElementById("terminalOutput");output.innerHTML+="\n> "+cmd;processTerminalCommand(cmd);this.value="";output.scrollTop=output.scrollHeight;}});
 
 // ============================================================
 // 结局系统
 // ============================================================
-function showBadEnding() {
-    var overlay = document.getElementById("endingOverlay");
-    overlay.className = "bad-ending";
-    document.getElementById("endingTitle").className = "ending-title bad";
-    document.getElementById("endingTitle").innerHTML = "■ 结局 · 无声黑暗";
-    document.getElementById("endingText").innerHTML = 
-        "你选择了妥协。真相随着你的沉默一同沉入深渊。<br><br>" +
-        "范明磊的名字被彻底遗忘，庄军的罪行被永远掩埋。<br><br>" +
-        "顾千的证词消失在档案室的灰尘里，<br>" +
-        "王浩宇的恐惧化为终身的阴影。<br><br>" +
-        "一切，都结束了。";
-    overlay.style.display = "flex";
-    setTimeout(function() {
-        overlay.classList.add("show");
-    }, 100);
+function showBadEnding(){
+var overlay=document.getElementById("endingOverlay");overlay.className="bad-ending";
+document.getElementById("endingTitle").className="ending-title bad";document.getElementById("endingTitle").innerHTML="■ 结局 · 无声黑暗";
+document.getElementById("endingText").innerHTML="你选择了妥协。真相随着你的沉默一同沉入深渊。<br><br>范明磊的名字被彻底遗忘，庄军的罪行被永远掩埋。<br><br>顾千的证词消失在档案室的灰尘里，<br>王浩宇的恐惧化为终身的阴影。<br><br>一切，都结束了。";
+overlay.style.display="flex";setTimeout(function(){overlay.classList.add("show");},100);
 }
-
-function showPerfectEnding() {
-    var flash = document.getElementById("whiteFlash");
-    flash.style.display = "block";
-    setTimeout(function() {
-        flash.classList.add("active");
-    }, 50);
-    setTimeout(function() {
-        flash.classList.remove("active");
-        flash.style.display = "none";
-        var overlay = document.getElementById("endingOverlay");
-        overlay.className = "perfect-ending";
-        document.getElementById("endingTitle").className = "ending-title perfect";
-        document.getElementById("endingTitle").innerHTML = "■ 结局 · 破晓";
-        document.getElementById("endingText").innerHTML = 
-            "你选择了相信自己。你没有被黑暗吞噬。<br><br>" +
-            "你拼凑的碎片、收集的证词、还原的真相，最终化为一道光。<br><br>" +
-            "庄军被绳之以法，范明磊的冤屈得以昭雪。<br><br>" +
-            "顾千终于能够放下愧疚，王浩宇走出了恐惧。<br><br>" +
-            "你做到了。";
-        overlay.style.display = "flex";
-        setTimeout(function() {
-            overlay.classList.add("show");
-        }, 100);
-    }, 1600);
+function showPerfectEnding(){
+var flash=document.getElementById("whiteFlash");flash.style.display="block";setTimeout(function(){flash.classList.add("active");},50);
+setTimeout(function(){flash.classList.remove("active");flash.style.display="none";
+var overlay=document.getElementById("endingOverlay");overlay.className="perfect-ending";
+document.getElementById("endingTitle").className="ending-title perfect";document.getElementById("endingTitle").innerHTML="■ 结局 · 破晓";
+document.getElementById("endingText").innerHTML="你选择了相信自己。你没有被黑暗吞噬。<br><br>你拼凑的碎片、收集的证词、还原的真相，最终化为一道光。<br><br>庄军被绳之以法，范明磊的冤屈得以昭雪。<br><br>顾千终于能够放下愧疚，王浩宇走出了恐惧。<br><br>你做到了。";
+overlay.style.display="flex";setTimeout(function(){overlay.classList.add("show");},100);},1600);
 }
-
-function resetAll() {
-    var overlay = document.getElementById("endingOverlay");
-    overlay.classList.remove("show");
-    overlay.style.display = "none";
-    document.getElementById("blackScreen").style.display = "none";
-    document.getElementById("blackScreenContent").innerHTML = "";
-    blackScreenRunning = false;
-    closeChoicePopup();
-    closeTerminal();
-    showPage('index');
+function resetAll(){
+var overlay=document.getElementById("endingOverlay");overlay.classList.remove("show");overlay.style.display="none";
+document.getElementById("blackScreen").style.display="none";document.getElementById("blackScreenContent").innerHTML="";blackScreenRunning=false;
+closeChoicePopup();closeTerminal();showPage('index');
 }
 
 // ============================================================
 // 键盘监听
 // ============================================================
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        if (document.getElementById("terminalModal").style.display === "flex") {
-            closeTerminal();
-        }
-        if (document.getElementById("choiceMask").style.display === "block") {
-            closeChoicePopup();
-        }
-        if (document.getElementById("classroomPopup").style.display === "block") {
-            closeClassroomPopup();
-        }
-    }
-});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(document.getElementById("terminalModal").style.display==="flex"){closeTerminal();}if(document.getElementById("choiceMask").style.display==="flex"){closeChoicePopup();}if(document.getElementById("classroomPopup").style.display==="flex"){closeClassroomPopup();}}});
 
 // ============================================================
 // 回车监听
 // ============================================================
-document.getElementById('volumeKeyInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        checkVolumeKey();
-    }
-});
-document.getElementById('forumKeyInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        checkForumKey();
-    }
-});
+document.getElementById('volumeKeyInput').addEventListener('keydown',function(e){if(e.key==='Enter'){checkVolumeKey();}});
+document.getElementById('forumKeyInput').addEventListener('keydown',function(e){if(e.key==='Enter'){checkForumKey();}});
+
+console.log("🔑 论坛跳转密钥: memorialfile (从联系我们获得)");
+console.log("🔑 卷宗访问密钥: invisiblet (从论坛十个碎片拼成)");
+console.log("💡 在抉择弹窗中输入 help 可激活终端");
+console.log("📱 已适配移动端");
 </script>
 </body>
 </html>
